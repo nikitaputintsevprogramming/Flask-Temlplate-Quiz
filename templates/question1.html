@@ -12,7 +12,7 @@
       <h1>Вопрос 1</h1>
       
       <div class="question-field">
-        <h2>Какой ваш любимый цвет?</h2>
+        <h2 id="question">Какой ваш любимый цвет?</h2>
         
         <div class="option">
           <input type="radio" id="option1" name="color" value="Красный">
@@ -36,7 +36,10 @@
       </div>
 
       <div class="send_button">
-        <button class="custom-btn btn-3" onclick='submitAnswer("/submitAnswer")'><span>Следующий вопрос</span></button>
+        <button class="custom-btn btn-3" onclick='SetQuestion()'><span>Следующий вопрос</span></button>
+      </div>
+      <div class="send_button">
+        <button class="custom-btn btn-3" onclick='submitAnswer("/SetQuestion")'><span>Следующий вопрос</span></button>
       </div>
     </div>
 </body>
