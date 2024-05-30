@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вопрос 1</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../static/js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+      <h1>Вопрос 1</h1>
+      
+      <div class="question-field">
+        <h2>Какой ваш любимый цвет?</h2>
+        
+        <div class="option">
+          <input type="radio" id="option1" name="color" value="Красный">
+          <label for="option1">Красный</label>
+        </div>
+
+        <div class="option">
+          <input type="radio" id="option2" name="color" value="Синий">
+          <label for="option2">Синий</label>
+        </div>
+
+        <div class="option">
+          <input type="radio" id="option3" name="color" value="Зелёный">
+          <label for="option3">Зелёный</label>
+        </div>
+
+        <div class="option">
+          <input type="radio" id="option4" name="color" value="Жёлтый">
+          <label for="option4">Жёлтый</label>
+        </div>
+      </div>
+
+      <div class="send_button">
+        <button class="custom-btn btn-3" onclick='submitAnswer("/submitAnswer")'><span>Следующий вопрос</span></button>
+      </div>
+    </div>
+</body>
+</html>

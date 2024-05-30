@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../static/js/script.js"></script>
+
+</head>
+<body>
+    <div class="container">
+      <h1>Форма</h1>
+      <div class="text-field">
+        <label class="text-field__label" for="fio">ФИО</label>
+        <input class="text-field__input" type="text" id="fio" placeholder='Иванов Иван Иванович"'>
+      </div>
+
+      <div class="text-field">
+        <label class="text-field__label" for="email">Почта</label>
+        <input class="text-field__input" type="email" id="email" placeholder='address@yandex.ru"'>
+      </div>
+
+      <div class="text-field">
+        <label class="text-field__label" for="tel">Телефон</label>
+        <input class="text-field__input" type="tel" id="phone" placeholder='+79602849411"'>
+      </div>
+      <!-- <div class="switch-field">
+        <label class="text-field__label">Включить защиту</label>
+        <label class="switch">
+            <input type="c  heckbox" id="check">
+            <span class="slider round"></span>
+        </label>
+      </div> -->
+
+      <div class="send_button">
+        <a href="/question1"><button class="custom-btn btn-3" onclick='GetFormData("/getFormData")'><span>Перейти в опросу</span></button></a>
+      </div>
+      <!-- <div class="send_button">
+        <button class="custom-btn btn-3" onclick='set_values("/GraphSensors")'><span>Показать график датчика</span></button>
+      </div>
+      <div class="send_button">
+        <button class="custom-btn btn-3" onclick='set_values("/GraphDevices")'><span>Показать график устройства</span></button>
+      </div> -->
+    </div>
+</body>
+</html>
