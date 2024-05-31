@@ -18,9 +18,7 @@ function GetFormData(addr) {
 }
 
 function SetQuestion(addr) {
-    var question = 'Masha?';
-    var questionLabel = document.getElementById('question');
-    questionLabel.innerHTML = 'Hello' + question;
+
     $.ajax({
         type: 'SET', //тип запроса
         url: addr, // адрес, на который отправлен запрос
@@ -32,9 +30,5 @@ function SetQuestion(addr) {
             console.log(response)
         }  
     });
-}
-
-function RandomQuestion() {
-    
 }
 

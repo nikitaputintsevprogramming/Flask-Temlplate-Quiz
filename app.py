@@ -17,9 +17,9 @@ logger_instance = lg('QuizInformation')
 def connect_form():
     return render_template('form.html')
 
-@app.route('/question1')
+@app.route('/question')
 def connect_question1():
-    return render_template('question1.html')
+    return render_template('question.html')
 
 @app.route('/getFormData')
 def getFormData():

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вопрос 1</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
+    <script src="../static/js/script.js" ></script>
+    <script src="../static/js/start.js"></script>
+
+</head>
+<body>
+    <div class="container">
+      <h1>Вопрос 1</h1>
+      
+      <div class="question-field">
+        <h2 id="question">Какой ваш любимый цвет?</h2>
+        
+        <div class="option">
+          <input type="radio" id="InputOption1" name="color" value="Красный">
+          <label id="option1" for="InputOption1">Красный</label>
+        </div>
+
+        <div class="option">
+          <input type="radio" id="InputOption2" name="color" value="Синий">
+          <label id="option2" for="InputOption2">Синий</label>
+        </div>
+
+        <div class="option">
+          <input type="radio" id="InputOption3" name="color" value="Зелёный">
+          <label id="option3" for="InputOption3">Зелёный</label>
+        </div>
+
+        <div class="option">
+          <input type="radio" id="InputOption4" name="color" value="Жёлтый">
+          <label id="option4" for="InputOption4">Жёлтый</label>
+        </div>
+      </div>
+
+      <!-- <div class="send_button">
+        <button class="custom-btn btn-3" onclick='RandomQuestion()'><span>Следующий вопрос</span></button>
+      </div> -->
+      <div class="send_button">
+        <button class="custom-btn btn-3" onclick='submitAnswer("/SetQuestion")'><span>Следующий вопрос</span></button>
+      </div>
+    </div>
+
+    <script>
+      
+    </script>
+</body>
+</html>
