@@ -20,7 +20,8 @@ def connect_form():
 def question():
     # global question
     # question.answer1 = "NOUP"
-    return render_template('question.html')
+    name = 'Бендер Сгибальщик Родригес'
+    return render_template('question.html', name=name)
 
 @app.route('/getQuestionData')
 def getQuestionData():
@@ -28,7 +29,7 @@ def getQuestionData():
     question = things.Question(request.args.get("question"), request.args.get("answer1"), 
         request.args.get("answer2"), request.args.get("answer3"), request.args.get("answer4"))
     # print(question.answer1)
-    return json.dumps(f'question: { request.args.get("question")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}')
+    return json.dumps(f'question: { request.args.get("question")}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
 
 @app.route('/getFormData')
 def getFormData():
@@ -39,7 +40,7 @@ def getFormData():
     logger_instance.insert_user_data('UserData', newUser)
     logger_instance.export_user_data('userdata.csv')
     # -------------------- потом переместить
-    return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Phone: {request.args.get("phone")}')
+    return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
 
 @app.route('/up')
 def up():

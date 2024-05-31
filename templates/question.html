@@ -15,7 +15,7 @@
       <h1>Вопрос 1</h1>
       
       <div class="question-field">
-        <h2 id="question">Какой ваш любимый цвет?</h2>
+        <h2 id="question">{{name}}</h2>
         
         <div class="option">
           <input type="radio" id="InputOption1" name="color" value="Красный">
@@ -42,7 +42,7 @@
         <button class="custom-btn btn-3" onclick='RandomQuestion()'><span>Следующий вопрос</span></button>
       </div> -->
       <div class="send_button">
-        <button class="custom-btn btn-3" onclick='submitAnswer("/SetQuestion")'><span>Следующий вопрос</span></button>
+        <button class="custom-btn btn-3" onclick='submitAnswer("/GetQuestion")'><span>Следующий вопрос</span></button>
       </div>
     </div>
 
