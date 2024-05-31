@@ -13,7 +13,6 @@ function RandomQuestion() {
         //     console.log('Вопрос номер :', index , questions[index].text);
             
         // }
-        
         // console.log('Случайный вопрос:', randomQuestion.text);
         // console.log('Варианты ответов:', randomQuestion.options);
         // console.log('Вариант A:', randomQuestion.options["A"]);
@@ -28,13 +27,10 @@ function RandomQuestion() {
         questionLabel.innerHTML = randomQuestion.options["C"]
         var questionLabel = document.getElementById('option4');
         questionLabel.innerHTML = randomQuestion.options["D"]
-
-        
     })
     .catch(error => console.error('Ошибка при загрузке файла:', error));    
 }
 
-
-window.addEventListener('load', () => {
-    RandomQuestion();
-  });
+// window.addEventListener('load', () => {
+//     RandomQuestion();
+//   });
