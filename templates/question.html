@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Вопрос 1</title>
+    <title>Вопрос №{{context.numerator}}</title>
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-      <h1>Вопрос 1</h1>
+      <h1>Вопрос №{{context.numerator}}</h1>
       
       <div class="question-field">
         <h2 id="question">{{context.question}}</h2>
@@ -38,9 +38,7 @@
         </div>
       </div>
       {% endfor %}
-      <!-- <div class="send_button">
-        <button class="custom-btn btn-3" onclick='RandomQuestion()'><span>Следующий вопрос</span></button>
-      </div> -->
+      
       <div class="send_button">
         <button class="custom-btn btn-3" onclick='GetQuestion("/getQuestionData")'><span>Следующий вопрос</span></button>
       </div>

@@ -19,11 +19,18 @@ class User(Thing):
         self.email = email
         self.phone = phone
         self.marks = 0
+        self.numerator = 0
         users.append(self)
         print(f'добавлен пользователь с именем "{fio}", с почтой "{email}", с телефоном "{phone}", со счетом "{self.marks}"')
 
     def print_name(self):
         super().print_name()
+
+    def up_numerator(self):
+        self.numerator +=1
+
+    def up_mark(self):
+        self.marks +=1
 
     def print_marks(self):
         print(f'Набрано очков: {self.marks} из {self.numerator}')
@@ -37,11 +44,7 @@ class Question(Thing):
         self.answer3 = answer3
         self.answer4 = answer4
         # users.append(self)
-        self.numerator = 0
-        print(f'добавлен вопрос: "{question}"')
+        print(f'добавлен вопрос: "{question}"') 
 
     def print_name(self):
         super().print_name()
-
-    def print_marks(self):
-        print(f'Набрано очков: {self.marks}')
