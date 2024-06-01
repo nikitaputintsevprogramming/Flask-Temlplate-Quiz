@@ -18,6 +18,7 @@ function GetFormData(addr) {
 }
 
 function GetQuestion(addr) {
+    
     fetch('/static/js/questions.json')
     
     .then(response => response.json())
@@ -41,6 +42,8 @@ function GetQuestion(addr) {
             success: function (response)
             {
                 console.log(response)
+                console.log("Вопрос готов!!!!!!!!!!!!!")
+                window.open('http://127.0.0.1:5000/question', '_self')
             }  
         });
     })
