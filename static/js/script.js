@@ -18,7 +18,6 @@ function GetFormData(addr) {
 }
 
 function GetQuestion(addr) {
-    
     fetch('/static/js/questions.json')
     
     .then(response => response.json())
@@ -27,12 +26,19 @@ function GetQuestion(addr) {
         const randomIndex = Math.floor(Math.random() * questions.length);
         const randomQuestion = questions[randomIndex];
 
+        answers = randomQuestion.options;
+        for (let index = 0; index < answers.length; index++) {
+            const element = answers[index];
+            console.log(element);
+        }
+
         $.ajax({
             type: 'GET', //тип запроса
             url: addr, // адрес, на который отправлен запрос
             dataType: 'json', //тип данных, ожидаемый от сервера
             conectType:'application/json', //тип передаваемых данных
             data:{ //данные запроса
+                
                 "question": randomQuestion.text,
                 "answer1":  randomQuestion.options["A"],
                 "answer2":  randomQuestion.options["B"],
@@ -42,12 +48,19 @@ function GetQuestion(addr) {
             success: function (response)
             {
                 console.log(response)
-                console.log("Вопрос готов!!!!!!!!!!!!!")
-                window.open('http://127.0.0.1:5000/question', '_self')
+                window.open('http://192.168.31.24:5000/question', '_self')
             }  
         });
     })
     .catch(error => console.error('Ошибка при загрузке файла:', error));     
+}
+
+function mixAnswers(answers){
+    for (let i = answers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [answers[i], answers[j]] = [answers[j], answers[i]];
+        console.log(answers[i]);
+    }
 }
 
   // function RandomQuestion() {
