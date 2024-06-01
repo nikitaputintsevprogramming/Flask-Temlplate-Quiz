@@ -3,13 +3,15 @@
 
 from flask import Flask, render_template, request, json, redirect, url_for
 
-app = Flask(__name__)
-
 import things
-quizData = things.Question("question","answer1","answer2","answer3","answer4")
 
 from logger import Logger as lg
+
+app = Flask(__name__)
+
 logger_instance = lg('QuizInformation')
+quizData = things.Question("question","answer1","answer2","answer3","answer4")
+context = {}
 
 @app.route('/')
 def connect_form():
@@ -17,8 +19,10 @@ def connect_form():
 
 @app.route('/question')
 def question():
-    name = quizData.question
-    return render_template('question.html', name=name)
+    context['question'] = quizData.question
+    context['answers'] = []
+    context['answers'].append({'answer1': quizData.answer1, 'answer2': quizData.answer2, 'answer3': quizData.answer3, 'answer4': quizData.answer4}) 
+    return render_template('question.html', context=context)
 
 @app.route('/getQuestionData')
 def getQuestionData():

@@ -15,29 +15,29 @@
       <h1>Вопрос 1</h1>
       
       <div class="question-field">
-        <h2 id="question">{{name}}</h2>
-        
+        <h2 id="question">{{context.question}}</h2>
+        {% for answer in context.answers %}
         <div class="option">
           <input type="radio" id="InputOption1" name="color" value="Красный">
-          <label id="option1" for="InputOption1">Красный</label>
+          <label id="option1" for="InputOption1">{{answer.answer1}}</label>
         </div>
 
         <div class="option">
           <input type="radio" id="InputOption2" name="color" value="Синий">
-          <label id="option2" for="InputOption2">Синий</label>
+          <label id="option2" for="InputOption2">{{answer.answer2}}</label>
         </div>
 
         <div class="option">
           <input type="radio" id="InputOption3" name="color" value="Зелёный">
-          <label id="option3" for="InputOption3">Зелёный</label>
+          <label id="option3" for="InputOption3">{{answer.answer3}}</label>
         </div>
 
         <div class="option">
           <input type="radio" id="InputOption4" name="color" value="Жёлтый">
-          <label id="option4" for="InputOption4">Жёлтый</label>
+          <label id="option4" for="InputOption4">{{answer.answer4}}</label>
         </div>
       </div>
-
+      {% endfor %}
       <!-- <div class="send_button">
         <button class="custom-btn btn-3" onclick='RandomQuestion()'><span>Следующий вопрос</span></button>
       </div> -->
@@ -45,9 +45,5 @@
         <button class="custom-btn btn-3" onclick='GetQuestion("/getQuestionData")'><span>Следующий вопрос</span></button>
       </div>
     </div>
-
-    <script>
-      
-    </script>
 </body>
 </html>
