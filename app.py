@@ -18,22 +18,17 @@ def connect_form():
 
 @app.route('/question')
 def question():
-    # global question
-    # question.answer1 = "NOUP"
     name = 'Бендер Сгибальщик Родригес'
     return render_template('question.html', name=name)
 
 @app.route('/getQuestionData')
 def getQuestionData():
-    # global question
     question = things.Question(request.args.get("question"), request.args.get("answer1"), 
         request.args.get("answer2"), request.args.get("answer3"), request.args.get("answer4"))
-    # print(question.answer1)
-    return json.dumps(f'question: { request.args.get("question")}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
+    return json.dumps(f'question: { question.question}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
 
 @app.route('/getFormData')
 def getFormData():
-    # global newUser
     print(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Phone: {request.args.get("phone")}')
     newUser = [things.User(request.args.get("fio"), request.args.get("email"), request.args.get("phone"))]
     # -------------------- потом переместить

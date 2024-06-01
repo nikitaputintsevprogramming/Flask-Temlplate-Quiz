@@ -1,9 +1,3 @@
-var questionLabel;
-var answer1Label;
-var answer2Label;
-var answer3Label;
-var answer4Label;
-
 function GetFormData(addr) {
     $.ajax({
         type: 'GET', //тип запроса
@@ -51,21 +45,6 @@ function GetQuestion(addr) {
         });
     })
     .catch(error => console.error('Ошибка при загрузке файла:', error));     
-}
-
-function SetQuestion()
-{
-    questionLabel = document.getElementById('question');
-    questionLabel.innerHTML = randomQuestion.text
-    
-    answer1Label = document.getElementById('option1');
-    answer1Label.innerHTML = randomQuestion.options["A"]
-    answer2Label = document.getElementById('option2');
-    answer2Label.innerHTML = randomQuestion.options["B"]
-    answer3Label = document.getElementById('option3');
-    answer3Label.innerHTML = randomQuestion.options["C"]
-    answer4Label = document.getElementById('option4');
-    answer4Label.innerHTML = randomQuestion.options["D"]
 }
 
   // function RandomQuestion() {
