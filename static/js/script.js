@@ -41,6 +41,7 @@ function GetQuestion(addr) {
                 
                 "question": randomQuestion.text,
                 "answer1":  randomQuestion.options["A"],
+                "correctAnswer": randomQuestion.options["A"],
                 "answer2":  randomQuestion.options["B"],
                 "answer3":  randomQuestion.options["C"],
                 "answer4":  randomQuestion.options["D"],
@@ -63,9 +64,32 @@ function mixAnswers(answers){
     }
 }
 
-function CheckAnswer() {
-    let selectedAnswer = document.getElementById('InputOption1').value;
-    console.log("Вы выбрали ответ:", selectedAnswer);
+function CheckAnswer(addr) {
+    selectedAnswer = null;
+    for (let index = 1; index <= 4; index++) {
+        let checkAnswer = document.getElementById('InputOption'+index);
+        if(checkAnswer.checked){
+            selectedAnswer = checkAnswer.value;
+            continue;
+        }
+    }
+    $.ajax({
+        type: 'GET', //тип запроса
+        url: addr, // адрес, на который отправлен запрос
+        dataType: 'json', //тип данных, ожидаемый от сервера
+        conectType:'application/json', //тип передаваемых данных
+        data:{ //данные запроса
+            'selectedAnswer': selectedAnswer,
+        },      
+        success: function (response)
+        {
+            console.log(response)
+        }
+    });
+
+   
+    // let selectedAnswer = document.getElementById('InputOption1').checked;
+    // console.log("Вы выбрали ответ:", selectedAnswer);
     // let question = document.getElementById("question").innerText;
     
     // $.ajax({
@@ -88,7 +112,7 @@ function CheckAnswer() {
     //         console.error('Ошибка при проверке ответа:', error);
     //     }
     // });
-    GetQuestion("/getQuestionData")
+    // GetQuestion("/getQuestionData")
 }
 
   // function RandomQuestion() {

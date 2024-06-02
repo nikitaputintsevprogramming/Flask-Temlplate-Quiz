@@ -17,22 +17,22 @@
       <div class="question-field">
         <h2 id="question">{{context.question}}</h2>
         {% for answer in context.answers %}
-        <div class="option">
+        <div class="Option1">
           <input type="radio" id="InputOption1" name="color" value='{{answer.answer1}}'>
           <label id="option1" for="InputOption1">{{answer.answer1}}</label>
         </div>
 
-        <div class="option">
+        <div class="Option2">
           <input type="radio" id="InputOption2" name="color" value='{{answer.answer2}}'>
           <label id="option2" for="InputOption2">{{answer.answer2}}</label>
         </div>
 
-        <div class="option">
+        <div class="Option3">
           <input type="radio" id="InputOption3" name="color" value='{{answer.answer3}}'>
           <label id="option3" for="InputOption3">{{answer.answer3}}</label>
         </div>
 
-        <div class="option">
+        <div class="Option4">
           <input type="radio" id="InputOption4" name="color" value='{{answer.answer4}}'>
           <label id="option4" for="InputOption4">{{answer.answer4}}</label>
         </div>
@@ -40,7 +40,7 @@
       {% endfor %}
       
       <div class="send_button">
-        <button class="custom-btn btn-3" onclick='CheckAnswer()'><span>Следующий вопрос</span></button>
+        <button class="custom-btn btn-3" onclick='CheckAnswer("/checkAnswer")'><span>Следующий вопрос</span></button>
       </div>
     </div>
 </body>

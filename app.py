@@ -35,9 +35,13 @@ def getQuestionData():
     # print(quizData.numerator)
     return json.dumps(f'question: { quizData.question}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
 
-@app.route('/checkAnswer', methods=['POST'])
+@app.route('/checkAnswer')
 def check_answer():
-    return
+    selectedAnswer = request.args.get("selectedAnswer")
+    trueAnswer = False
+    if(selectedAnswer == quizData.answer1):
+        trueAnswer = True
+    return json.dumps(f'Выбран ответ: {selectedAnswer} и он {trueAnswer}')
 
 @app.route('/getFormData')
 def getFormData():
@@ -48,7 +52,6 @@ def getFormData():
     logger_instance.insert_user_data('UserData', newUser)
     logger_instance.export_user_data('userdata.csv')
     # -------------------- потом переместить
-   
     return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
 
 @app.route('/up')
