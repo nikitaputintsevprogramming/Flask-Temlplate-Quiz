@@ -1,11 +1,10 @@
 # pandas, flask, openpyxl, ?pymongo
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
 
-import socket
+import socket, random
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
 
 import things
-
 from logger import Logger as lg
 
 app = Flask(__name__)
@@ -24,7 +23,9 @@ def question():
     context['question'] = quizData.question
     context['numerator'] = newUser[0].numerator
     context['answers'] = []
-    context['answers'].append({'answer1': quizData.answer1, 'answer2': quizData.answer2, 'answer3': quizData.answer3, 'answer4': quizData.answer4}) 
+    answers = [quizData.answer1, quizData.answer2, quizData.answer3, quizData.answer4]
+    random.shuffle(answers)  # Перемешиваем ответы
+    context['answers'].append({'answer1': answers[0], 'answer2': answers[1], 'answer3': answers[2], 'answer4': answers[3]}) 
     return render_template('question.html', context=context)
 
 @app.route('/getQuestionData')
@@ -40,6 +41,7 @@ def check_answer():
     selectedAnswer = request.args.get("selectedAnswer")
     trueAnswer = False
     if(selectedAnswer == quizData.answer1):
+        newUser[0].up_mark()
         trueAnswer = True
     return json.dumps(f'Выбран ответ: {selectedAnswer} и он {trueAnswer}')
 
