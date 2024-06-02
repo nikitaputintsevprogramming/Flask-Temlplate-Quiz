@@ -63,6 +63,34 @@ function mixAnswers(answers){
     }
 }
 
+function CheckAnswer() {
+    let selectedAnswer = document.getElementById('InputOption1').value;
+    console.log("Вы выбрали ответ:", selectedAnswer);
+    // let question = document.getElementById("question").innerText;
+    
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '/checkAnswer',
+    //     dataType: 'json',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify({
+    //         "question": question,
+    //         "selectedAnswer": selectedAnswer
+    //     }),
+    //     success: function(response) {
+    //         if (response.correct) {
+    //             alert('Правильный ответ!');
+    //         } else {
+    //             alert('Неправильный ответ. Правильный ответ: ' + response.correctAnswer);
+    //         }
+    //     },
+    //     error: function(error) {
+    //         console.error('Ошибка при проверке ответа:', error);
+    //     }
+    // });
+    GetQuestion("/getQuestionData")
+}
+
   // function RandomQuestion() {
 //     fetch('/static/js/questions.json')
     

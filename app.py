@@ -2,7 +2,7 @@
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
 
 import socket
-from flask import Flask, render_template, request, json, redirect, url_for
+from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
 
 import things
 
@@ -35,6 +35,10 @@ def getQuestionData():
     # print(quizData.numerator)
     return json.dumps(f'question: { quizData.question}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
 
+@app.route('/checkAnswer', methods=['POST'])
+def check_answer():
+    return
+
 @app.route('/getFormData')
 def getFormData():
     global newUser
@@ -51,7 +55,7 @@ def getFormData():
 def up():
     return
 
-@app.route('/up')
+@app.route('/getIP')
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
