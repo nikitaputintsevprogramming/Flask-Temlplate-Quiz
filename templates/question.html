@@ -10,116 +10,122 @@
     <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
     <script src="../static/js/script.js" ></script>
     <script src="../static/js/start.js"></script>
-    <style>
-      .answer-block {
-        display: inline-block;
-        padding: 10px;
-        margin: 5px;
-        border: 1px solid #ccc;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-    
-      .answer-block.selected {
-        background-color: #d3d3d3; /* Цвет при выборе */
-      }
-    
-      .answer-block input[type="radio"] {
-        display: none; /* Скрыть радио-кнопки */
-      }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h4 id="h1">Вопрос №{{context.numerator}}</h4>
-        
-        <div class="question-block col-12 mx-auto">
-            <h5 id="question">{{context.question}}</h5>
-        </div>
+  <div class="container">
+    <h4 id="h1">Вопрос №{{context.numerator}}</h4>
+    
+    <div class="question-block col-12 mx-auto">
+        <h5 id="question">{{context.question}}</h5>
+    </div>
 
-        <div class="row">
-            {% for answer in context.answers %}
-            <div class="col-md-12">
-                <div class="answer-block">
-                    <input type="radio" id="InputOption1" name="color" value='{{answer.answer1}}'>
-                    <label id="option1" class="responsive-label" for="InputOption1">{{answer.answer1}}</label>
-                </div>
-                <div class="answer-block">
-                  <input type="radio" id="InputOption2" name="color" value='{{answer.answer2}}'>
-                  <label id="option2" class="responsive-label" for="InputOption2">{{answer.answer2}}</label>
-              </div>
+    <div class="row">
+        {% for answer in context.answers %}
+        <div class="col-md-12">
+            <div class="answer-block" data-radio="InputOption1">
+                <input type="radio" id="InputOption1" name="color" value='{{answer.answer1}}' style="display: none;">
+                <label id="option1" class="responsive-label" for="InputOption1">{{answer.answer1}}</label>
             </div>
-            <div class="col-md-12">
-              <div class="answer-block">
-                <input type="radio" id="InputOption3" name="color" value='{{answer.answer3}}'>
+            <div class="answer-block" data-radio="InputOption2">
+                <input type="radio" id="InputOption2" name="color" value='{{answer.answer2}}' style="display: none;">
+                <label id="option2" class="responsive-label" for="InputOption2">{{answer.answer2}}</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="answer-block" data-radio="InputOption3">
+                <input type="radio" id="InputOption3" name="color" value='{{answer.answer3}}' style="display: none;">
                 <label id="option3" class="responsive-label" for="InputOption3">{{answer.answer3}}</label>
             </div>
-            <div class="answer-block">
-              <input type="radio" id="InputOption4" name="color" value='{{answer.answer4}}'>
-              <label id="option4" class="responsive-label" for="InputOption4">{{answer.answer4}}</label>
-          </div>
-          </div>
-            {% endfor %}
+            <div class="answer-block" data-radio="InputOption4">
+                <input type="radio" id="InputOption4" name="color" value='{{answer.answer4}}' style="display: none;">
+                <label id="option4" class="responsive-label" for="InputOption4">{{answer.answer4}}</label>
+            </div>
         </div>
-
-        <div class="text-center">
-            <button class="btn btn-primary" onclick='CheckAnswer("/checkAnswer")'>Следующий вопрос</button>
-        </div>
+        {% endfor %}
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-      function adjustFontSize() {
-        const labels = document.querySelectorAll('.responsive-label');
-        let maxHeight = 0;
-        
-        // Находим максимальную высоту метки
-        labels.forEach(label => {
-          const labelHeight = label.clientHeight;
-          maxHeight = Math.max(maxHeight, labelHeight);
-        });
+
+    <div class="text-center">
+        <button class="btn btn-primary" onclick='CheckAnswer("/checkAnswer")'>Следующий вопрос</button>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+  function adjustFontSize() {
+    const labels = document.querySelectorAll('.responsive-label');
+    let maxHeight = 100;
     
-        // Рассчитываем размер шрифта на основе максимальной высоты метки
-        const parentHeight = labels[0].parentElement.clientHeight; // Берем высоту контейнера первой метки
-        const ratio = parentHeight / maxHeight;
-        
-        // Устанавливаем минимальный и максимальный размер шрифта
-        const minFontSize = 12; // Минимальный размер шрифта в пикселях
-        const maxFontSize = 24; // Максимальный размер шрифта в пикселях
+    // Находим максимальную высоту метки
+    labels.forEach(label => {
+      const labelHeight = label.clientHeight;
+      maxHeight = Math.max(maxHeight, labelHeight);
+    });
+
+    // Рассчитываем размер шрифта на основе максимальной высоты метки
+    const parentHeight = labels[0].parentElement.clientHeight; // Берем высоту контейнера первой метки
+    const ratio = parentHeight / maxHeight;
     
-        let newFontSize = Math.max(minFontSize, Math.min(maxFontSize, 16 * ratio));
-    
-        // Устанавливаем одинаковый размер шрифта для всех меток
-        labels.forEach(label => {
-          label.style.fontSize = `${newFontSize}px`;
-        });
-    
-        // Регулировка размера шрифта для элемента с id "question"
-        const question= document.getElementById('question');
-        question.style.fontSize = `${3 * ratio}px`;
-      }
-    
-      // Регулировка размера шрифта при загрузке страницы
-      window.addEventListener('load', adjustFontSize);
-    
-      // Регулировка размера шрифта при изменении размера окна
-      window.addEventListener('resize', adjustFontSize);
-    </script>
-    <script>
+    // Устанавливаем минимальный и максимальный размер шрифта
+    const minFontSize = 12; // Минимальный размер шрифта в пикселях
+    const maxFontSize = 100; // Максимальный размер шрифта в пикселях
+
+    let newFontSize = Math.max(minFontSize, Math.min(maxFontSize, 16 * ratio));
+
+    // Устанавливаем одинаковый размер шрифта для всех меток
+    labels.forEach(label => {
+      label.style.fontSize = `${newFontSize}px`;
+    });
+  }
+
+  // Регулировка размера шрифта при загрузке страницы
+  window.addEventListener('load', adjustFontSize);
+
+  // Регулировка размера шрифта при изменении размера окна
+  window.addEventListener('resize', adjustFontSize);
+</script>
+<script>
+  document.querySelectorAll('.answer-block').forEach(block => {
+    block.addEventListener('click', () => {
+      // Снимаем выбор со всех блоков
       document.querySelectorAll('.answer-block').forEach(block => {
-        block.addEventListener('click', () => {
-          // Снимаем выбор со всех блоков
-          document.querySelectorAll('.answer-block').forEach(block => {
-            block.classList.remove('selected');
-          });
-    
-          // Добавляем выбор к текущему блоку
-          block.classList.add('selected');
-    
-          // Ставим соответствующую радио-кнопку в выбранное состояние
-          const radioId = block.getAttribute('data-radio');
-          document.getElementById(radioId).checked = true;
-        });
+        block.classList.remove('selected');
       });
-    </script>
+
+      // Добавляем выбор к текущему блоку
+      block.classList.add('selected');
+
+      // Ставим соответствующую радио-кнопку в выбранное состояние
+      const radioId = block.getAttribute('data-radio');
+      document.getElementById(radioId).checked = true;
+    });
+  });
+</script>
+<script>
+  document.querySelectorAll('.answer-block').forEach(block => {
+    block.addEventListener('click', () => {
+      // Снимаем выбор со всех блоков
+      document.querySelectorAll('.answer-block').forEach(block => {
+        block.classList.remove('selected');
+      });
+
+      // Добавляем выбор к текущему блоку
+      block.classList.add('selected');
+
+      // Ставим соответствующую радио-кнопку в выбранное состояние
+      const radioId = block.getAttribute('data-radio');
+      document.getElementById(radioId).checked = true;
+    });
+  });
+
+  // Добавляем стили для выделенного блока
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .answer-block.selected {
+      border: 2px solid blue;
+      background-color: lightblue;
+    }
+  `;
+  document.head.appendChild(style);
+</script>
 </body>
 </html>
