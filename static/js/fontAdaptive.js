@@ -33,8 +33,10 @@ function adjustFontSize() {
 
   // Устанавливаем одинаковый размер шрифта для всех меток
   labels.forEach(label => {
-    label.style.fontSize = `${newFontSize/2}px`;
+    label.style.fontSize = `${newFontSize/2.2}px`;
   });
+  console.log(newFontSize);
+
 }
 
 // Регулировка размера шрифта при загрузке страницы
@@ -42,3 +44,38 @@ window.addEventListener('load', adjustFontSize);
 
 // Регулировка размера шрифта при изменении размера окна
 window.addEventListener('resize', adjustFontSize);
+
+
+function adjustFontSizeById(questionId) {
+  const label = document.getElementById(questionId);
+  if (!label) return;
+
+  const labelWidth = label.textContent.length;
+  const labelHeight = label.clientHeight;
+
+  const parent = label.parentElement;
+  const parentWidth = parent.clientWidth;
+  const parentHeight = parent.clientHeight;
+  const widthRatio = parentWidth / labelWidth;
+  const heightRatio = parentHeight / labelHeight;
+  const ratio = Math.min(widthRatio, heightRatio);
+
+  const minFontSize = 12;
+  const maxFontSize = 50;
+  const baseFontSize = 16;
+
+  let newFontSize = Math.max(minFontSize, Math.min(maxFontSize, baseFontSize * ratio));
+
+  if (labelWidth > parentWidth || labelHeight > parentHeight) {
+    newFontSize = Math.min(newFontSize, minFontSize * (parentWidth / labelWidth));
+  }
+
+  label.style.fontSize = `${newFontSize/2.2}px`;
+  console.log(newFontSize);
+}
+
+// Регулировка размера шрифта при загрузке страницы для одного вопроса по id
+window.addEventListener('load', () => adjustFontSizeById('question'));
+
+// Регулировка размера шрифта при изменении размера окна для одного вопроса по id
+window.addEventListener('resize', () => adjustFontSizeById('question'));
