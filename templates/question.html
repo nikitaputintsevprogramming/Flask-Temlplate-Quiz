@@ -3,45 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Вопрос №{{context.numerator}}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
     <script src="../static/js/script.js" ></script>
     <script src="../static/js/start.js"></script>
-
 </head>
 <body>
     <div class="container">
-      <h1>Вопрос №{{context.numerator}}</h1>
-      
-      <div class="question-field">
-        <h2 id="question">{{context.question}}</h2>
-        {% for answer in context.answers %}
-        <div class="Option1">
-          <input type="radio" id="InputOption1" name="color" value='{{answer.answer1}}'>
-          <label id="option1" for="InputOption1">{{answer.answer1}}</label>
+        <h4 id="h1">Вопрос №{{context.numerator}}</h4>
+        
+        <div class="question-block col-12 mx-auto">
+            <h5 id="question">{{context.question}}</h5>
         </div>
 
-        <div class="Option2">
-          <input type="radio" id="InputOption2" name="color" value='{{answer.answer2}}'>
-          <label id="option2" for="InputOption2">{{answer.answer2}}</label>
+        <div class="row">
+            {% for answer in context.answers %}
+            <div class="col-md-12">
+                <div class="answer-block">
+                    <input type="radio" id="InputOption1" name="color" value='{{answer.answer1}}'>
+                    <label id="option1" class="responsive-label" for="InputOption1">{{answer.answer1}}</label>
+                </div>
+                <div class="answer-block">
+                  <input type="radio" id="InputOption2" name="color" value='{{answer.answer2}}'>
+                  <label id="option2" class="responsive-label" for="InputOption2">{{answer.answer2}}</label>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="answer-block">
+                <input type="radio" id="InputOption3" name="color" value='{{answer.answer3}}'>
+                <label id="option3" class="responsive-label" for="InputOption3">{{answer.answer3}}</label>
+            </div>
+            <div class="answer-block">
+              <input type="radio" id="InputOption4" name="color" value='{{answer.answer4}}'>
+              <label id="option4" class="responsive-label" for="InputOption4">{{answer.answer4}}</label>
+          </div>
+          </div>
+            {% endfor %}
         </div>
 
-        <div class="Option3">
-          <input type="radio" id="InputOption3" name="color" value='{{answer.answer3}}'>
-          <label id="option3" for="InputOption3">{{answer.answer3}}</label>
+        <div class="text-center">
+            <button class="btn btn-primary" onclick='CheckAnswer("/checkAnswer")'>Следующий вопрос</button>
         </div>
-
-        <div class="Option4">
-          <input type="radio" id="InputOption4" name="color" value='{{answer.answer4}}'>
-          <label id="option4" for="InputOption4">{{answer.answer4}}</label>
-        </div>
-      </div>
-      {% endfor %}
-      
-      <div class="send_button">
-        <button class="custom-btn btn-3" onclick='CheckAnswer("/checkAnswer")'><span>Следующий вопрос</span></button>
-      </div>
     </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      function adjustFontSize() {
+        const labels = document.querySelectorAll('.responsive-label');
+        let maxHeight = 100;
+        
+        // Находим максимальную высоту метки
+        labels.forEach(label => {
+          const labelHeight = label.clientHeight;
+          maxHeight = Math.max(maxHeight, labelHeight);
+        });
+    
+        // Рассчитываем размер шрифта на основе максимальной высоты метки
+        const parentHeight = labels[0].parentElement.clientHeight; // Берем высоту контейнера первой метки
+        const ratio = parentHeight / maxHeight;
+        
+        // Устанавливаем минимальный и максимальный размер шрифта
+        const minFontSize = 12; // Минимальный размер шрифта в пикселях
+        const maxFontSize = 100; // Максимальный размер шрифта в пикселях
+    
+        let newFontSize = Math.max(minFontSize, Math.min(maxFontSize, 16 * ratio));
+    
+        // Устанавливаем одинаковый размер шрифта для всех меток
+        labels.forEach(label => {
+          label.style.fontSize = `${newFontSize}px`;
+        });
+      }
+    
+      // Регулировка размера шрифта при загрузке страницы
+      window.addEventListener('load', adjustFontSize);
+    
+      // Регулировка размера шрифта при изменении размера окна
+      window.addEventListener('resize', adjustFontSize);
+    </script>
+    
 </body>
 </html>

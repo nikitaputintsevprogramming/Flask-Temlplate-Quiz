@@ -1,13 +1,16 @@
-# pandas, flask, openpyxl, ?pymongo
+# pandas, flask, openpyxl, ?pymongo, 
+
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
 
 import socket, random
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
+from flask_socketio import SocketIO, emit
 
 import things
 from logger import Logger as lg
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 logger_instance = lg('QuizInformation')
 quizData = things.Question("question","answer1","answer2","answer3","answer4")
@@ -30,6 +33,7 @@ def question():
         return render_template('question.html', context=context)
     else:
         context["marks"] = newUser[0].marks
+        
         return render_template('results.html', context=context)
 
 @app.route('/getQuestionData')

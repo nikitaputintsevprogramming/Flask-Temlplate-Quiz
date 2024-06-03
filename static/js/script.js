@@ -76,6 +76,12 @@ function CheckAnswer(addr) {
         success: function (response)
         {
             console.log(response)
+            // if(document.getElementById('h1').innerHTML == 'Вопрос №1'){
+            //     console.log('reload');
+            //     location.href = 'http://192.168.31.24:5000/tournamentTable';
+            //     // location.assign('http://192.168.31.24:5000/tournamentTable');
+            //     location.reload();
+            // }
         }
     });
     GetQuestion("/getQuestionData")
