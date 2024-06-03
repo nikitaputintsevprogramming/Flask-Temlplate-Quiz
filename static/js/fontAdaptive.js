@@ -33,7 +33,7 @@ function adjustFontSize() {
 
   // Устанавливаем одинаковый размер шрифта для всех меток
   labels.forEach(label => {
-    label.style.fontSize = `${newFontSize}px`;
+    label.style.fontSize = `${newFontSize/2}px`;
   });
 }
 
