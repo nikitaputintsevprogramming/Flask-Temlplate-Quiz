@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
     <script src="../static/js/script.js" ></script>
-    <script src="../static/js/start.js"></script>
+    <script src="../static/js/fontAdaptive.js"></script>
+    <script src="../static/js/blockChoose.js"></script>
 </head>
 <body>
   <div class="container">
@@ -50,82 +51,5 @@
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-  function adjustFontSize() {
-    const labels = document.querySelectorAll('.responsive-label');
-    let maxHeight = 100;
-    
-    // Находим максимальную высоту метки
-    labels.forEach(label => {
-      const labelHeight = label.clientHeight;
-      maxHeight = Math.max(maxHeight, labelHeight);
-    });
-
-    // Рассчитываем размер шрифта на основе максимальной высоты метки
-    const parentHeight = labels[0].parentElement.clientHeight; // Берем высоту контейнера первой метки
-    const ratio = parentHeight / maxHeight;
-    
-    // Устанавливаем минимальный и максимальный размер шрифта
-    const minFontSize = 12; // Минимальный размер шрифта в пикселях
-    const maxFontSize = 100; // Максимальный размер шрифта в пикселях
-
-    let newFontSize = Math.max(minFontSize, Math.min(maxFontSize, 16 * ratio));
-
-    // Устанавливаем одинаковый размер шрифта для всех меток
-    labels.forEach(label => {
-      label.style.fontSize = `${newFontSize}px`;
-    });
-  }
-
-  // Регулировка размера шрифта при загрузке страницы
-  window.addEventListener('load', adjustFontSize);
-
-  // Регулировка размера шрифта при изменении размера окна
-  window.addEventListener('resize', adjustFontSize);
-</script>
-<script>
-  document.querySelectorAll('.answer-block').forEach(block => {
-    block.addEventListener('click', () => {
-      // Снимаем выбор со всех блоков
-      document.querySelectorAll('.answer-block').forEach(block => {
-        block.classList.remove('selected');
-      });
-
-      // Добавляем выбор к текущему блоку
-      block.classList.add('selected');
-
-      // Ставим соответствующую радио-кнопку в выбранное состояние
-      const radioId = block.getAttribute('data-radio');
-      document.getElementById(radioId).checked = true;
-    });
-  });
-</script>
-<script>
-  document.querySelectorAll('.answer-block').forEach(block => {
-    block.addEventListener('click', () => {
-      // Снимаем выбор со всех блоков
-      document.querySelectorAll('.answer-block').forEach(block => {
-        block.classList.remove('selected');
-      });
-
-      // Добавляем выбор к текущему блоку
-      block.classList.add('selected');
-
-      // Ставим соответствующую радио-кнопку в выбранное состояние
-      const radioId = block.getAttribute('data-radio');
-      document.getElementById(radioId).checked = true;
-    });
-  });
-
-  // Добавляем стили для выделенного блока
-  const style = document.createElement('style');
-  style.innerHTML = `
-    .answer-block.selected {
-      border: 2px solid blue;
-      background-color: lightblue;
-    }
-  `;
-  document.head.appendChild(style);
-</script>
 </body>
 </html>
