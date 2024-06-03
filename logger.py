@@ -10,7 +10,6 @@ class Logger:
     def __init__(self, db_name):
         self.client = pymongo.MongoClient('mongodb://localhost:27017/')
         self.db = self.client[db_name]
-        
 
     def insert_user_data(self, nameDB, dataArray):
         result = {'timeOfRead': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
@@ -22,8 +21,8 @@ class Logger:
             result["Marks"] = data.marks
         return self.db[nameDB].insert_one(result)
 
-    def read_user_data(self, nameDB, value={}, field={}):
-        return self.db[nameDB].find(value, field)
+    def read_user_data(self, nameDB): #, value={}, field={}
+       return self.db[nameDB].find({}, {'_id': 1, 'timeOfRead': 1, 'Name': 1, 'E-mail': 1, 'Phone': 1, 'Marks': 1})
     
     def export_user_data(self, csv_filename):
         csv_columns = ['_id', 'timeOfRead', 'Name', 'E-mail', 'Phone', 'Marks']

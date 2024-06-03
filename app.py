@@ -62,9 +62,10 @@ def getFormData():
     # -------------------- потом переместить
     return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
 
-@app.route('/up')
-def up():
-    return
+@app.route('/tournamentTable')
+def generate_tournamentTable():
+    user_data = logger_instance.read_user_data('UserData')
+    return render_template('tournamentTable.html', user_data=user_data)
 
 @app.route('/getIP')
 def get_ip():
