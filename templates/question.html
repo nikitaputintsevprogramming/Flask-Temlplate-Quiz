@@ -10,6 +10,24 @@
     <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
     <script src="../static/js/script.js" ></script>
     <script src="../static/js/start.js"></script>
+    <style>
+      .answer-block {
+        display: inline-block;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+    
+      .answer-block.selected {
+        background-color: #d3d3d3; /* Цвет при выборе */
+      }
+    
+      .answer-block input[type="radio"] {
+        display: none; /* Скрыть радио-кнопки */
+      }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -52,7 +70,7 @@
     <script>
       function adjustFontSize() {
         const labels = document.querySelectorAll('.responsive-label');
-        let maxHeight = 100;
+        let maxHeight = 0;
         
         // Находим максимальную высоту метки
         labels.forEach(label => {
@@ -66,7 +84,7 @@
         
         // Устанавливаем минимальный и максимальный размер шрифта
         const minFontSize = 12; // Минимальный размер шрифта в пикселях
-        const maxFontSize = 100; // Максимальный размер шрифта в пикселях
+        const maxFontSize = 24; // Максимальный размер шрифта в пикселях
     
         let newFontSize = Math.max(minFontSize, Math.min(maxFontSize, 16 * ratio));
     
@@ -74,6 +92,10 @@
         labels.forEach(label => {
           label.style.fontSize = `${newFontSize}px`;
         });
+    
+        // Регулировка размера шрифта для элемента с id "question"
+        const question= document.getElementById('question');
+        question.style.fontSize = `${3 * ratio}px`;
       }
     
       // Регулировка размера шрифта при загрузке страницы
@@ -82,6 +104,22 @@
       // Регулировка размера шрифта при изменении размера окна
       window.addEventListener('resize', adjustFontSize);
     </script>
+    <script>
+      document.querySelectorAll('.answer-block').forEach(block => {
+        block.addEventListener('click', () => {
+          // Снимаем выбор со всех блоков
+          document.querySelectorAll('.answer-block').forEach(block => {
+            block.classList.remove('selected');
+          });
     
+          // Добавляем выбор к текущему блоку
+          block.classList.add('selected');
+    
+          // Ставим соответствующую радио-кнопку в выбранное состояние
+          const radioId = block.getAttribute('data-radio');
+          document.getElementById(radioId).checked = true;
+        });
+      });
+    </script>
 </body>
 </html>
