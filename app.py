@@ -59,10 +59,6 @@ def getFormData():
     global newUser
     print(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Phone: {request.args.get("phone")}')
     newUser = [things.User(request.args.get("fio"), request.args.get("email"), request.args.get("phone"))]
-    # -------------------- потом переместить
-    
-    
-    # -------------------- потом переместить
     return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
 
 @app.route('/tournamentTable')
