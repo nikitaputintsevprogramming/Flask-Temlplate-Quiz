@@ -56,13 +56,13 @@ function GetQuestion(addr) {
     .catch(error => console.error('Ошибка при загрузке файла:', error));     
 }
 
-function mixAnswers(answers){
-    for (let i = answers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [answers[i], answers[j]] = [answers[j], answers[i]];
-        console.log(answers[i]);
-    }
-}
+// function mixAnswers(answers){
+//     for (let i = answers.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [answers[i], answers[j]] = [answers[j], answers[i]];
+//         console.log(answers[i]);
+//     }
+// }
 
 function CheckAnswer(addr) {
     selectedAnswer = null;
@@ -86,7 +86,8 @@ function CheckAnswer(addr) {
             console.log(response)
         }
     });
-
+    GetQuestion("/getQuestionData")
+}
    
     // let selectedAnswer = document.getElementById('InputOption1').checked;
     // console.log("Вы выбрали ответ:", selectedAnswer);
@@ -113,7 +114,7 @@ function CheckAnswer(addr) {
     //     }
     // });
     // GetQuestion("/getQuestionData")
-}
+
 
   // function RandomQuestion() {
 //     fetch('/static/js/questions.json')

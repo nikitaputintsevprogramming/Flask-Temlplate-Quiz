@@ -26,13 +26,19 @@ def question():
     answers = [quizData.answer1, quizData.answer2, quizData.answer3, quizData.answer4]
     random.shuffle(answers)  # Перемешиваем ответы
     context['answers'].append({'answer1': answers[0], 'answer2': answers[1], 'answer3': answers[2], 'answer4': answers[3]}) 
-    return render_template('question.html', context=context)
+    if newUser[0].numerator <= 10:
+        return render_template('question.html', context=context)
+    else:
+        context["marks"] = newUser[0].marks
+        return render_template('results.html', context=context)
 
 @app.route('/getQuestionData')
 def getQuestionData():
     global quizData
     quizData = things.Question(request.args.get("question"), request.args.get("answer1"), request.args.get("answer2"), request.args.get("answer3"), request.args.get("answer4"))
-    newUser[0].up_numerator()
+    if newUser[0].numerator < 10:
+        newUser[0].up_numerator()
+    # else:
     # print(quizData.numerator)
     return json.dumps(f'question: { quizData.question}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
 
