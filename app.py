@@ -33,17 +33,16 @@ def question():
         return render_template('question.html', context=context)
     else:
         context["marks"] = newUser[0].marks
-        
+        logger_instance.insert_user_data('UserData', newUser)
+        logger_instance.export_user_data('userdata.csv')
         return render_template('results.html', context=context)
 
 @app.route('/getQuestionData')
 def getQuestionData():
     global quizData
     quizData = things.Question(request.args.get("question"), request.args.get("answer1"), request.args.get("answer2"), request.args.get("answer3"), request.args.get("answer4"))
-    if newUser[0].numerator < 10:
+    if newUser[0].numerator <= 10:
         newUser[0].up_numerator()
-    # else:
-    # print(quizData.numerator)
     return json.dumps(f'question: { quizData.question}, answer1: {request.args.get("answer1")}, answer2: {request.args.get("answer2")}, answer3: {request.args.get("answer3")}, answer4: {request.args.get("answer4")}')
 
 @app.route('/checkAnswer')
@@ -61,8 +60,8 @@ def getFormData():
     print(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Phone: {request.args.get("phone")}')
     newUser = [things.User(request.args.get("fio"), request.args.get("email"), request.args.get("phone"))]
     # -------------------- потом переместить
-    logger_instance.insert_user_data('UserData', newUser)
-    logger_instance.export_user_data('userdata.csv')
+    
+    
     # -------------------- потом переместить
     return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
 
