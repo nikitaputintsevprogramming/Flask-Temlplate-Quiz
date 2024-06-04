@@ -91,7 +91,7 @@ def print_blank():
     doc.render(context)
     fpath = "Blanks\Автору.docx"
     doc.save(fpath)
-    win32api.ShellExecute(1, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
+    win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
 
 def jobForPrint(marks):
     if(marks >=0 and marks <= 1):

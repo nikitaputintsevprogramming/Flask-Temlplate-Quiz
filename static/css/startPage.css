@@ -1,13 +1,65 @@
 /* Общие стили */
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('Sprites/bg.jpg');
-    background-size: cover; /* Растягиваем изображение на весь экран */
-    background-position: center; /* Центрируем изображение по центру экрана */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center; /* Центрируем контент по горизонтали */
-    align-items: center; /* Центрируем контент по вертикали */
-    min-height: 100vh; /* Чтобы контент был посередине на всю высоту экрана */
+  font-family: Arial, sans-serif;
+  background-image: url('Sprites/startPage/фон.png');
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  position: relative;
+}
+
+/* Лого */
+.logo {
+  position: absolute;
+  width: 350px;
+  height: 54px;
+  top: 93px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 0px;
+  opacity: 0px;
+  animation: fadeIn 2s forwards;
+  opacity: 0;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* Кнопка */
+.send_button {
+  position: absolute;
+  width: 370.1px;
+  height: 175.82px;
+  top: 750px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 0px;
+  /* opacity: 0; */
+  opacity: 0;
+  animation: fadeIn 2s 1s forwards;
+} 
+
+.send_button img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 45px 0px 0px 0px;
+  
+} 
+
+/* Анимация */
+@keyframes fadeIn {
+  to {
+      opacity: 1;
   }
+}

@@ -1,0 +1,181 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('Sprites/form/фонФорма.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/* Лого */
+.logo {
+    position: absolute;
+    width: 350px;
+    height: 54px;
+    top: 93px;
+    left: 569px;
+    transform: translateX(235px);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+}
+
+/* Заголовок */
+h1 {
+    position: absolute;
+    width: 919px;
+    height: 60px;
+    top: 191px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    font-family: 'YS Display', sans-serif;
+    font-size: 70px;
+    font-weight: 500;
+    font-family: "YSGeo";
+    color: white;
+}
+
+/* Поля ввода */
+.form-grid {
+    position: absolute;
+    top: 375px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px 50px;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    
+}
+
+.text-field {
+    width: 100%;
+}
+
+.text-field__label {
+    font-family: 'YS Display', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 25px;
+    text-align: left;
+}
+
+.text-field__input {
+    width: 550px;
+    height: 71px;
+    border-radius: 15px 15px 15px 15px;
+    border: 3px solid #ccc;
+    font-size: 20px;
+    padding: 10px;
+    
+}
+
+/* Согласие на обработку данных */
+.switch-field {
+    position: absolute;
+    width: 1071px;
+    height: 60px;
+    top: 690px;
+    left: 900px;
+    transform: translateX(-50%);
+    gap: 0;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    display: flex;
+    align-items: center;
+}
+
+.switch-field.text-field__label{
+    color: white;
+    width: 1071px;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    margin-right: 100px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 48px;
+    width: 48px;
+    background-color: #F2F7FB;
+    /* border: 2px solid #ccc; */
+    border-radius: 10px;
+}
+
+.switch input:checked + .checkmark {
+    /* background-color: #F2F7FB; */
+    /* border: 2px solid red; */
+    /* background-image: url('data:image/svg+xml;utf8,<svg fill="red" height="58" viewBox="0 0 24 24" width="58" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-11 14l-4-4 1.41-1.41L8 14.17l7.59-7.59L17 8l-9 9z"/></svg>'); */
+    /* background-size: 24px 24px; */
+    background-image: url('../css/Sprites/form/checked.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Кнопка */
+.send_button {
+    position: absolute;
+    width: 263px;
+    height: 90px;
+    top: 932px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 0;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.send_button img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 23px 0px 0px 0px;
+    border: 3.27px solid #ccc;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
+@font-face {
+    font-family: "YSGeo"; 
+    src: url("../fonts/YS\ Geo-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
