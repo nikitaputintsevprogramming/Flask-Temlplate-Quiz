@@ -1,10 +1,13 @@
-# pandas, flask, openpyxl, ?pymongo, 
-
+# pandas, flask, openpyxl, ?pymongo, docxtp? pip install pywin32 (win32api)
+# нужна настройка принтера на поля?
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
 
 import socket, random
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
 from flask_socketio import SocketIO, emit
+from docxtpl import DocxTemplate
+import win32api
+import win32print
 
 import things
 from logger import Logger as lg
@@ -37,9 +40,11 @@ def question():
     if newUser[0].numerator <= 10:
         return render_template('question.html', context=context)
     else:
+        print_blank()
         context["marks"] = newUser[0].marks
         logger_instance.insert_user_data('UserData', newUser)
         logger_instance.export_user_data('userdata.csv')
+
         return render_template('results.html', context=context)
 
 @app.route('/getQuestionData')
@@ -75,9 +80,39 @@ def generate_tournamentTable():
     
     return render_template('tournamentTable.html', user_data=sorted_user_data)
 
-@app.route('/finish')
-def finish():
-    return
+@app.route('/print')
+def print_blank():
+    doc = DocxTemplate("Blanks\Бланк - Авто.ру.docx")
+    context = { 
+        'name' : newUser[0].name,
+        'surname' : newUser[0].surname,
+        'mark' : newUser[0].marks,
+        'job' : jobForPrint(newUser[0].marks)}
+    doc.render(context)
+    fpath = "Blanks\Автору.docx"
+    doc.save(fpath)
+    win32api.ShellExecute(1, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
+
+def jobForPrint(marks):
+    if(marks >=0 and marks <= 1):
+        return 'Стажер-аналитик'
+    elif(marks >=2 and marks <= 3):
+        return 'Начинающий специалист'
+    elif(marks >=4 and marks <= 5):
+        return 'Младший аналитик'
+    elif(marks >=6 and marks <= 7):
+        return 'Аналитик'
+    elif(marks >=8 and marks <= 9):
+        return 'Старший аналитик'
+    else:
+        return 'Ведущий аналитик '
+
+# 0-1 балл — Стажер-аналитик
+# 2-3 балла — Начинающий специалист
+# 4-5 баллов — Младший аналитик
+# 6-7 баллов — Аналитик
+# 8-9 баллов — Старший аналитик 
+# 10 баллов — Ведущий аналитик
 
 @app.route('/getIP')
 def get_ip():
