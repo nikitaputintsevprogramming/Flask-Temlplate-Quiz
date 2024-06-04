@@ -13,15 +13,16 @@ class Thing(abc.ABC):
         print(f'Имя: {self.name}')
 
 class User(Thing):
-    def __init__(self, fio, email, phone):
-        super().__init__(fio)
-        self.fio = fio
+    def __init__(self, name, surname, email, phone):
+        super().__init__(name)
+        self.name = name
+        self.surname = surname
         self.email = email
         self.phone = phone
         self.marks = 0
         self.numerator = 0
         users.append(self)
-        print(f'добавлен пользователь с именем "{fio}", с почтой "{email}", с телефоном "{phone}", со счетом "{self.marks}"')
+        print(f'добавлен пользователь с именем "{name}", с почтой "{email}", с телефоном "{phone}", со счетом "{self.marks}"')
 
     def print_name(self):
         super().print_name()

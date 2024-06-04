@@ -15,17 +15,18 @@ class Logger:
         result = {'timeOfRead': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
         for data in dataArray:
             result["_id"] = self.db.get_collection("UserData").count_documents({}) + 1
-            result["Name"] = data.fio
+            result["Name"] = data.name
+            result["Surname"] = data.surname
             result["E-mail"] = data.email
             result["Phone"] = data.phone
             result["Marks"] = data.marks
         return self.db[nameDB].insert_one(result)
 
     def read_user_data(self, nameDB): #, value={}, field={}
-       return self.db[nameDB].find({}, {'_id': 1, 'timeOfRead': 1, 'Name': 1, 'E-mail': 1, 'Phone': 1, 'Marks': 1}) # Единицы - выводим, 0 - не выводим
+       return self.db[nameDB].find({}, {'_id': 1, 'timeOfRead': 1, 'Name': 1, 'Surname': 1, 'E-mail': 1, 'Phone': 1, 'Marks': 1}) # Единицы - выводим, 0 - не выводим
     
     def export_user_data(self, csv_filename):
-        csv_columns = ['_id', 'timeOfRead', 'Name', 'E-mail', 'Phone', 'Marks']
+        csv_columns = ['_id', 'timeOfRead', 'Name', 'Surname', 'E-mail', 'Phone', 'Marks']
          # Экспорт данных из базы данных в CSV файл
         with open(csv_filename, 'w', encoding='utf-8', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=csv_columns)

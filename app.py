@@ -14,11 +14,16 @@ socketio = SocketIO(app)
 
 logger_instance = lg('QuizInformation')
 quizData = things.Question("question","answer1","answer2","answer3","answer4")
-newUser = things.User("1","1","1")
+newUser = things.User("1","1","1","1")
 context = {}
 
 @app.route('/')
+def startPage():
+    return render_template('startPage.html')
+
+@app.route('/form')
 def connect_form():
+    print("jkb")
     return render_template('form.html')
 
 @app.route('/question')
@@ -57,9 +62,9 @@ def check_answer():
 @app.route('/getFormData')
 def getFormData():
     global newUser
-    print(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Phone: {request.args.get("phone")}')
-    newUser = [things.User(request.args.get("fio"), request.args.get("email"), request.args.get("phone"))]
-    return json.dumps(f'Name: { request.args.get("fio")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
+    print(f'Name: { request.args.get("name")}, {request.args.get("surname")}, E-mail: {request.args.get("email")}, Phone: {request.args.get("phone")}')
+    newUser = [things.User(request.args.get("name"), request.args.get("surname"), request.args.get("email"), request.args.get("phone"))]
+    return json.dumps(f'Name: { request.args.get("name")}, Surname: { request.args.get("surname")}, E-mail: {request.args.get("email")}, Marks: {request.args.get("marks")}')
 
 @app.route('/tournamentTable')
 def generate_tournamentTable():
@@ -69,6 +74,11 @@ def generate_tournamentTable():
     sorted_user_data = sorted(user_data, key=lambda x: x['Marks'], reverse=True)
     
     return render_template('tournamentTable.html', user_data=sorted_user_data)
+
+@app.route('/finish')
+def finish():
+    return
+
 @app.route('/getIP')
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

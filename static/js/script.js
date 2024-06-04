@@ -1,3 +1,22 @@
+
+function ToPage(addr) {
+    $.ajax({
+        type: 'GET', //тип запроса
+        url: addr, // адрес, на который отправлен запрос
+        dataType: 'json', //тип данных, ожидаемый от сервера
+        conectType:'application/json', //тип передаваемых данных
+        data:{ //данные запроса
+            // 'selectedAnswer': selectedAnswer,
+        },      
+        success: function (response)
+        {
+            console.log(response)
+            
+        }
+    });
+    window.open('http://192.168.31.24:5000'+addr, '_self')
+}
+
 function GetFormData(addr) {
     $.ajax({
         type: 'GET', //тип запроса
@@ -5,7 +24,8 @@ function GetFormData(addr) {
         dataType: 'json', //тип данных, ожидаемый от сервера
         conectType:'application/json', //тип передаваемых данных
         data:{ //данные запроса
-            "fio": document.getElementById("fio").value,
+            "name": document.getElementById("name").value,
+            "surname": document.getElementById("surname").value,
             "email": document.getElementById("email").value,
             "phone": document.getElementById("phone").value
         },      
