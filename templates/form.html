@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../static/css/keyboard.css">
     <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="../static/js/script.js"></script>
+    <link rel="stylesheet" href="../static/css/keyboard.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
@@ -17,19 +19,19 @@
         <div class="form-grid">
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25 " for="name">Имя</label>
-                <input class="text-field__input font-ysgeoBold size-25" type="text" id="name" placeholder='Иван' onclick="select()">
+                <input class="text-field__input font-ysgeoBold size-25 use-keyboard-input" type="text" id="name" placeholder='Иван' onclick="select()">
             </div>
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25" for="surname">Фамилия</label>
-                <input class="text-field__input font-ysgeoBold size-25" type="text" id="surname" placeholder='Иванов'>
+                <input class="text-field__input font-ysgeoBold size-25 use-keyboard-input" type="text" id="surname" placeholder='Иванов'>
             </div>
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25" for="email">E-Mail</label>
-                <input class="text-field__input font-ysgeoBold size-25" type="email" id="email" placeholder='info@gmail.ru'>
+                <input class="text-field__input font-ysgeoBold size-25 use-keyboard-input" type="email" id="email" placeholder='info@gmail.ru'>
             </div>
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25" for="tel">Телефон</label>
-                <input class="text-field__input font-ysgeoBold size-25" type="tel" id="phone" placeholder='+7 999 888 77 66'>
+                <input class="text-field__input font-ysgeoBold size-25 use-keyboard-input" type="tel" id="phone" placeholder='+7 999 888 77 66'>
             </div>
         </div>
         <div class="switch-field">
@@ -44,6 +46,6 @@
         <div class="send_button">
             <img src="../static/css/Sprites/form/nextButton.png" alt="Перейти к опросу" onclick='GetFormData("/getFormData")'>
         </div>
-        
+        <script src="../static/js/keyboard.js"></script>
     </body>
 </html>

@@ -20,6 +20,10 @@ quizData = things.Question("question","answer1","answer2","answer3","answer4")
 newUser = things.User("1","1","1","1")
 context = {}
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
 @app.route('/')
 def startPage():
     return render_template('startPage.html')
