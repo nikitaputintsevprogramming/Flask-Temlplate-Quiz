@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Форма</title>
     <link rel="stylesheet" type="text/css" href="../static/css/form.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/keyboard.css">
     <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="../static/js/script.js"></script>
 </head>
@@ -12,23 +13,23 @@
         <div class="logo">
             <img src="../static/css/Sprites/form/logoForm.png" alt="Авто.ру Лого">
         </div>
-        <h1 class="font-ysgeo size-70">ДАВАЙТЕ ЗНАКОМИТЬСЯ</h1>
+        <h1 class="font-ysgeoReg size-70">ДАВАЙТЕ ЗНАКОМИТЬСЯ</h1>
         <div class="form-grid">
             <div class="text-field">
-                <label class="text-field__label font-ysdisplay size-25" for="name">Имя</label>
-                <input class="text-field__input font-ysreg size-25" type="text" id="name" placeholder='Иван'>
+                <label class="text-field__label font-ysdisplay size-25 " for="name">Имя</label>
+                <input class="text-field__input font-ysgeoBold size-25" type="text" id="name" placeholder='Иван' onclick="select()">
             </div>
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25" for="surname">Фамилия</label>
-                <input class="text-field__input font-ysreg size-25" type="text" id="surname" placeholder='Иванов'>
+                <input class="text-field__input font-ysgeoBold size-25" type="text" id="surname" placeholder='Иванов'>
             </div>
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25" for="email">E-Mail</label>
-                <input class="text-field__input font-ysreg size-25" type="email" id="email" placeholder='info@gmail.ru'>
+                <input class="text-field__input font-ysgeoBold size-25" type="email" id="email" placeholder='info@gmail.ru'>
             </div>
             <div class="text-field">
                 <label class="text-field__label font-ysdisplay size-25" for="tel">Телефон</label>
-                <input class="text-field__input font-ysreg size-25" type="tel" id="phone" placeholder='+7 999 888 77 66'>
+                <input class="text-field__input font-ysgeoBold size-25" type="tel" id="phone" placeholder='+7 999 888 77 66'>
             </div>
         </div>
         <div class="switch-field">
@@ -37,12 +38,12 @@
                 <span class="checkmark"></span>
             </label>
             <label id="Soglasiye" class="text-field__label font-ysdisplay size-20">
-              Даю согласие ООО «Яндекс.Вертикали» (ОГРН 5157746192742) на обработку указанных сведений в целях принятия участия в мероприятии, направления обратной связи по мероприятию, на условиях Политики конфиденциальности
+              Даю согласие ООО «Яндекс.Вертикали» (ОГРН 5157746192742) на обработку указанных сведений в целях принятия участия в мероприятии, направления обратной связи по мероприятию, на условиях <a style="color: white;" href="/privacy"> Политики конфиденциальности</a>
           </label>
         </div>
         <div class="send_button">
             <img src="../static/css/Sprites/form/nextButton.png" alt="Перейти к опросу" onclick='GetFormData("/getFormData")'>
         </div>
-    </div>
-</body>
+        
+    </body>
 </html>

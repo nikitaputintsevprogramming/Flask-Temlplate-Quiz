@@ -37,10 +37,11 @@ body {
 
 /* Заголовок */
 h1 {
-    position: absolute;
+    position: relative;
+    text-align: center;
     top: 161px;
-    left: 1020px;
-    transform: translateX(-50%);
+    /* left: 965px; */
+    /* transform: translateX(-50%); */
     opacity: 0;
     animation: fadeIn 2s forwards;
     color: white;
@@ -54,7 +55,7 @@ h1 {
     transform: translateX(-50%);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px 50px;
+    grid-gap: 30px 50px;
     opacity: 0;
     animation: fadeIn 2s forwards;
 }
@@ -66,6 +67,8 @@ h1 {
 .text-field__label {
     text-align: left;
     color: white;
+    bottom: 10px; 
+    position:relative;
 }
 
 .text-field__input {
@@ -78,7 +81,7 @@ h1 {
 }
 
 .text-field__input::placeholder {
-    color: black;
+    color: rgb(201, 177, 177);
 }
 
 /* Согласие на обработку данных */
@@ -94,6 +97,11 @@ h1 {
     animation: fadeIn 2s forwards;
     display: flex;
     align-items: center;
+}
+
+#Soglasiye{
+    top: 5px; 
+    position:relative;
 }
 
 .switch {
@@ -144,7 +152,7 @@ h1 {
     height: auto;
     cursor: pointer;
     border-radius: 23px 0px 0px 0px;
-    border: 3.27px solid #ccc;
+    /* border: 3.27px solid #ccc; */
 }
 
 /* Анимация */
@@ -156,14 +164,14 @@ h1 {
 
 /* Шрифты */
 @font-face {
-    font-family: "YSGeo"; 
+    font-family: "YSGeoRegular"; 
     src: url("../fonts/YS\ Geo-Regular.ttf") format("truetype"); 
     font-style: normal; 
     font-weight: normal; 
 } 
 
 @font-face {
-    font-family: "YSReg"; 
+    font-family: "ysGeoBold"; 
     src: url("../fonts/YS\ Display-Bold.ttf") format("truetype"); 
     font-style: normal; 
     font-weight: normal; 
@@ -176,13 +184,17 @@ h1 {
     font-weight: normal; 
 }
 
-/* Утилиты */
-.font-ysgeo {
-    font-family: 'YSGeo';
+.top{
+    top:30px;
 }
 
-.font-ysreg {
-    font-family: 'YSReg';
+/* Утилиты */
+.font-ysgeoReg {
+    font-family: 'YSGeoRegular';
+}
+
+.font-ysgeoBold {
+    font-family: 'ysGeoBold';
 }
 
 .font-ysdisplay {

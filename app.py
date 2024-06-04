@@ -26,8 +26,11 @@ def startPage():
 
 @app.route('/form')
 def connect_form():
-    print("jkb")
     return render_template('form.html')
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacyPolicy.html')
 
 @app.route('/question')
 def question():
