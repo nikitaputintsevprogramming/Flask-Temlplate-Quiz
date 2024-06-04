@@ -64,8 +64,11 @@ def getFormData():
 @app.route('/tournamentTable')
 def generate_tournamentTable():
     user_data = logger_instance.read_user_data('UserData')
-    return render_template('tournamentTable.html', user_data=user_data)
-
+    
+    # Сортируем данные по полю 'Marks' в убывающем порядке
+    sorted_user_data = sorted(user_data, key=lambda x: x['Marks'], reverse=True)
+    
+    return render_template('tournamentTable.html', user_data=sorted_user_data)
 @app.route('/getIP')
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

@@ -22,7 +22,7 @@ class Logger:
         return self.db[nameDB].insert_one(result)
 
     def read_user_data(self, nameDB): #, value={}, field={}
-       return self.db[nameDB].find({}, {'_id': 1, 'timeOfRead': 1, 'Name': 1, 'E-mail': 1, 'Phone': 1, 'Marks': 1})
+       return self.db[nameDB].find({}, {'_id': 1, 'timeOfRead': 1, 'Name': 1, 'E-mail': 1, 'Phone': 1, 'Marks': 1}) # Единицы - выводим, 0 - не выводим
     
     def export_user_data(self, csv_filename):
         csv_columns = ['_id', 'timeOfRead', 'Name', 'E-mail', 'Phone', 'Marks']
