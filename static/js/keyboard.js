@@ -15,14 +15,14 @@ const Keyboard = {
         keyLayout: [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "done", 
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",  "backspace",
-            "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
+            "symb", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
             "caps", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "space", "lang"
         ],
         keyLayoutRu: [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "done",
             "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "backspace",
-            "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-             "caps","я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "ё", "-", ".", "space", "lang"
+            "symb", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
+            "caps","я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "ё", "-", ".", "space", "lang"
         ],
         keyLayoutSymb: [
             "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "done",
@@ -106,7 +106,21 @@ const Keyboard = {
 
 	_createKeys() {
         const fragment = document.createDocumentFragment();
-        const keyLayout = this.properties.currentLayout === 'en' ? this.properties.keyLayout : this.properties.keyLayoutRu;
+        let keyLayout;
+        switch (this.properties.currentLayout) {
+            case 'en':
+                keyLayout = this.properties.keyLayout;
+                break;
+            case 'ru':
+                keyLayout = this.properties.keyLayoutRu;
+                break;
+            case 'symb':
+                keyLayout = this.properties.keyLayoutSymb;
+                break;
+            default:
+                keyLayout = this.properties.keyLayout;
+                break;
+        }
     
         keyLayout.forEach((key) => {
             const insertLineBreak = this.properties.insertLineBreakAfterKeys.indexOf(key) !== -1;
@@ -170,6 +184,15 @@ const Keyboard = {
                         });
                     break;
     
+                case "symb":
+                    this._createKeyBtn(
+                        "keyboard", "keyboard__key--wide",
+                        () => {
+                            this._toggleSymbLayout();
+                        }
+                    );
+                    break;
+    
                 default:
                     this._createKeyBtn();
                     this.keyElement.textContent = key.toLowerCase();
@@ -195,7 +218,17 @@ const Keyboard = {
             this.properties.activeElement.value = this.properties.value;
         }
     },
-
+    _toggleSymbLayout() {
+        if (this.properties.currentLayout === 'symb') {
+            this.properties.currentLayout = this.properties.capsLock ? 'en' : 'ru';
+        } else {
+            this.properties.currentLayout = 'symb';
+        }
+        this.elements.keysContainer.innerHTML = '';
+        this.elements.keysContainer.appendChild(this._createKeys());
+        this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
+    },
+    
     _toggleCapsLock() {
         this.properties.capsLock = !this.properties.capsLock;
     
