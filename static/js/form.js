@@ -63,3 +63,43 @@ function CheckForm(addr) {
 document.querySelector('.send_button img').addEventListener('click', () => {
     CheckForm("/getFormData");
 });
+
+
+// Сохранение данных формы в localStorage
+function saveFormData() {
+    const fields = ['name', 'surname', 'email', 'phone'];
+    fields.forEach(field => {
+        localStorage.setItem(field, document.getElementById(field).value);
+    });
+    localStorage.setItem('check', document.getElementById('check').checked);
+}
+
+// Восстановление данных формы из localStorage
+function loadFormData() {
+    const fields = ['name', 'surname', 'email', 'phone'];
+    fields.forEach(field => {
+        if (localStorage.getItem(field)) {
+            document.getElementById(field).value = localStorage.getItem(field);
+        }
+    });
+    if (localStorage.getItem('check') === 'true') {
+        document.getElementById('check').checked = true;
+    }
+}
+
+// Сохраняем данные формы перед переходом по ссылке
+document.querySelector('#Soglasiye a').addEventListener('click', saveFormData);
+
+// Загружаем данные формы при загрузке страницы
+window.onload = function() {
+    if (document.referrer.includes('/privacy')) {
+        loadFormData();
+    } else {
+        // Очистка данных при первоначальной загрузке
+        localStorage.removeItem('name');
+        localStorage.removeItem('surname');
+        localStorage.removeItem('email');
+        localStorage.removeItem('phone');
+        localStorage.removeItem('check');
+    }
+};
