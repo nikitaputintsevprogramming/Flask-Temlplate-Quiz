@@ -1,11 +1,10 @@
-# pandas, flask, openpyxl, ?pymongo, docxtp? pip install pywin32 (win32api)
-# нужна настройка принтера на поля?
+# !pandas, !flask, !openpyxl, !pymongo, !docxtpl !win32api (pip install pywin32)
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
-# Перед печатью нужно отключить уведомления в принтере
+# Перед печатью нужно отключить уведомления в принтере или нужна настройка принтера на поля?
 
 import socket, random 
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
-from flask_socketio import SocketIO, emit
+# from flask_socketio import SocketIO, emit
 from docxtpl import DocxTemplate
 import win32api
 import win32print
@@ -14,7 +13,7 @@ import things
 from logger import Logger as lg
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+# socketio = SocketIO(app)
 
 logger_instance = lg('QuizInformation')
 quizData = things.Question("question","answer1","answer2","answer3","answer4")

@@ -1,5 +1,6 @@
 function validateForm() {
-    let isValid = false;
+    let isValidA = false;
+    let isValidB = false;
 
     // Список полей ввода
     const fields = ['name', 'surname', 'email', 'phone'];
@@ -7,10 +8,10 @@ function validateForm() {
         const input = document.getElementById(field);
         if (!input.value.trim()) {
             input.style.borderColor = 'red';
-            isValid = false;
+            isValidA = false;
         } else {
             input.style.borderColor = '#ccc'; // Исходный цвет границы
-            isValid = true;
+            isValidA = true;
         }
     });
 
@@ -22,9 +23,14 @@ function validateForm() {
         setTimeout(() => {
             checkmark.style.backgroundColor = '#F2F7FB'; // Исходный цвет фона
         }, 1000);
-        isValid = false;
+        isValidB = false;
+    }
+    else
+    {
+        isValidB = true;
     }
 
+    isValid = isValidA && isValidB;
     return isValid;
 }
 
