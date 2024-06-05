@@ -1,8 +1,9 @@
 # pandas, flask, openpyxl, ?pymongo, docxtp? pip install pywin32 (win32api)
 # нужна настройка принтера на поля?
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
+# Перед печатью нужно отключить уведомления в принтере
 
-import socket, random
+import socket, random 
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
 from flask_socketio import SocketIO, emit
 from docxtpl import DocxTemplate
