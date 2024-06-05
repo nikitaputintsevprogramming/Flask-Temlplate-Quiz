@@ -52,11 +52,15 @@
 }
 
 .keyboard__key--wide {
-    width: 90px; /* Широкие кнопки также будут квадратными */
+    width: 145px; /* Широкие кнопки также будут квадратными */
+}
+
+.keyboard__key-small {
+    width: 145px; /* Широкие кнопки также будут квадратными */
 }
 
 .keyboard__key--extra--wide {
-    width: 135px; /* Еще более широкие кнопки также будут квадратными */
+    width: 605px; /* Еще более широкие кнопки также будут квадратными */
 }
 
 .keyboard__key--activatable::after {
@@ -72,6 +76,10 @@
 
 .keyboard__key--active::after {
     background: #08ff00;
+}
+
+.keyboard__key--yellow{
+    background: #CCFF00;
 }
 
 .keyboard__key--dark {

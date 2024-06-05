@@ -6,31 +6,36 @@ const Keyboard = {
 		capsKey: null,
 	},
 
+    // let slash = "\";
+
     properties: {
         value: "",
         capsLock: false,
         keyboardInputs: null,
         activeElement: null,
-        insertLineBreakAfterKeys: ["done", "backspace","enter"],
+        insertLineBreakAfterKeys: ["done", "backspace","enter", "caps","\\"],
         keyLayout: [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "done", 
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",  "backspace",
-            "symb", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
-            "caps", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "space", "lang"
+            , "a", "s", "d", "f", "g", "h", "j", "k", "l", ";",  "enter",
+             "z", "x", "c", "v", "b", "n", "m", ",", ".", "?","caps",
+             "symb","@", "space","<", ">", "lang"
         ],
         keyLayoutRu: [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "done",
-            "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "backspace",
-            "symb", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-            "caps","я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "ё", "-", ".", "space", "lang"
+            "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х","ъ", "backspace",
+             "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "?", "enter",
+            "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "ё", "-", ".", "caps",
+            "symb","@", "space","<", ">", "lang"
         ],
         keyLayoutSymb: [
-            "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "done",
-            "-", "_", "+", "=", "{", "}", "[", "]", "|", "\\", "backspace",
-            "'", "\"", ":", ";", "<", ">", ",", ".", "?", "!", "enter",
-            "caps", "№", "~", "€", "£", "¥", "₽", "/", "₴", "₣", "₤", "₡", "space", "lang"
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "done",
+            "!", "@", "#", "$", "^", "&", "_", "-", "=", "+",";", "*", "backspace",
+            ":", "(", ")", "/", "%", "'", '"', "[", "]", "{", "}", "<", "enter",
+            ">", "?", "€", "£", "¥", "`", "¤", "×", "÷", "~", "|",  ",", ".", "\\" ,
+            "symb","@", "space","<", ">", "lang"
         ],
-        currentLayout: 'en'
+        currentLayout: 'ru'
     },
 
     _toggleLanguage() {
@@ -164,10 +169,11 @@ const Keyboard = {
                             this._updateValueInTarget();
                         });
                     break;
+                    
     
                 case "done":
                     this._createKeyBtn(
-                        "check_circle", "keyboard__key--dark",
+                        "check_circle", "keyboard__key--yellow",
                         () => {
                             this.close();
                             this._updateValueInTarget();
@@ -186,7 +192,8 @@ const Keyboard = {
     
                 case "symb":
                     this._createKeyBtn(
-                        "keyboard", "keyboard__key--wide",
+                        "keyboard", "keyboard__key",
+                        // "keyboard__key--wide",
                         () => {
                             this._toggleSymbLayout();
                         }
