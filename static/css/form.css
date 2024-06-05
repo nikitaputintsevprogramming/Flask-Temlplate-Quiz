@@ -23,7 +23,7 @@ body {
 .logo {
     width: 350px;
     height: 54px;
-    top: 100px;
+   
     margin: 0 auto;
     opacity: 0;
     animation: fadeIn 2s forwards;
@@ -51,6 +51,7 @@ h1 {
     animation: fadeIn 2s forwards;
     margin: 0 auto;
     max-width: 1200px;
+    
 }
 
 .text-field {
