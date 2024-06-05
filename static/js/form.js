@@ -24,10 +24,6 @@ function validateForm() {
         }, 1000);
         isValid = false;
     }
-    else
-    {
-        isValid = true;
-    }
 
     return isValid;
 }
