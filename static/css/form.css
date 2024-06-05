@@ -62,7 +62,7 @@ h1 {
     animation: fadeIn 2s forwards;
     margin: 0 auto;
     max-width: 1200px;
-    
+    margin-top: -3%;
 }
 
 .text-field {

@@ -89,14 +89,14 @@ def generate_tournamentTable():
 
 @app.route('/print')
 def print_blank():
-    doc = DocxTemplate("Blanks\Бланк - Авто.ру.docx")
+    doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
     context = { 
         'name' : newUser[0].name,
         'surname' : newUser[0].surname,
         'mark' : newUser[0].marks,
         'job' : jobForPrint(newUser[0].marks)}
     doc.render(context)
-    fpath = "Blanks\Автору.docx"
+    fpath = "App\Blanks\Автору.docx"
     doc.save(fpath)
     win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
 
