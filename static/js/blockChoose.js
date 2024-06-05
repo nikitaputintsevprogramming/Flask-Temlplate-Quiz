@@ -20,10 +20,15 @@ function blockChoosen()
       const style = document.createElement('style');
       style.innerHTML = `
         .answer-block.selected {
-          border: 2px solid blue;
-          background-color: lightblue;
+          // border: 2px solid blue;
+          background-color: #CCFF00;
+          
+        }
+        .answer-block.selected label {
+          color: black; /* Изменение цвета текста на черный только для меток внутри выбранного блока */
         }
       `;
+
       document.head.appendChild(style);
 }
 

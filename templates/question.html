@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Вопрос №{{context.numerator}}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/question.css">
     <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
@@ -14,6 +14,9 @@
 </head>
 <body>
   <div class="container">
+    <div class="logo">
+        <img src="../static/css/Sprites/form/ques_logo.png" alt="Авто.ру Лого">
+    </div>
     <h4 id="h1">Вопрос №{{context.numerator}}</h4>
     
     <div class="question-block col-12 mx-auto">
@@ -22,31 +25,34 @@
 
     <div class="row">
         {% for answer in context.answers %}
-        <div class="col-md-12">
+        <div class="col-md-12 answer-container">
             <div class="answer-block" data-radio="InputOption1">
                 <input type="radio" id="InputOption1" name="color" value='{{answer.answer1}}' style="display: none;">
-                <label id="option1" class="responsive-label" for="InputOption1">{{answer.answer1}}</label>
+                <label id="option1" class="responsive-label text-ans-vert-align" for="InputOption1">{{answer.answer1}}</label>
             </div>
             <div class="answer-block" data-radio="InputOption2">
                 <input type="radio" id="InputOption2" name="color" value='{{answer.answer2}}' style="display: none;">
-                <label id="option2" class="responsive-label" for="InputOption2">{{answer.answer2}}</label>
+                <label id="option2" class="responsive-label text-ans-vert-align" for="InputOption2">{{answer.answer2}}</label>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 answer-container" >
             <div class="answer-block" data-radio="InputOption3">
                 <input type="radio" id="InputOption3" name="color" value='{{answer.answer3}}' style="display: none;">
-                <label id="option3" class="responsive-label" for="InputOption3">{{answer.answer3}}</label>
+                <label id="option3" class="responsive-label text-ans-vert-align" for="InputOption3">{{answer.answer3}}</label>
             </div>
             <div class="answer-block" data-radio="InputOption4">
                 <input type="radio" id="InputOption4" name="color" value='{{answer.answer4}}' style="display: none;">
-                <label id="option4" class="responsive-label" for="InputOption4">{{answer.answer4}}</label>
+                <label id="option4" class="responsive-label text-ans-vert-align" for="InputOption4">{{answer.answer4}}</label>
             </div>
         </div>
         {% endfor %}
     </div>
 
-    <div class="text-center">
-        <button class="btn btn-primary" onclick='CheckAnswer("/checkAnswer")'>Следующий вопрос</button>
+    <!-- <div class="text-center">
+        <button class="btn " onclick='CheckAnswer("/checkAnswer")'>Следующий вопрос</button>
+    </div> -->
+    <div class="send_button ">
+        <img src="../static/css/Sprites/form/QuesButt.png" alt="Перейти к опросу" onclick='CheckAnswer("/checkAnswer")'>
     </div>
 </div>
 

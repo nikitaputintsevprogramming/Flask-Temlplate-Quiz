@@ -33,7 +33,7 @@ function adjustFontSize() {
 
   // Устанавливаем одинаковый размер шрифта для всех меток
   labels.forEach(label => {
-    label.style.fontSize = `${newFontSize/2.2}px`;
+    label.style.fontSize = `${newFontSize}px`;
   });
   console.log(newFontSize);
 
@@ -70,7 +70,7 @@ function adjustFontSizeById(questionId) {
     newFontSize = Math.min(newFontSize, minFontSize * (parentWidth / labelWidth));
   }
 
-  label.style.fontSize = `${newFontSize/2.2}px`;
+  label.style.fontSize = `${newFontSize/1.5}px`;
   console.log(newFontSize);
 }
 
