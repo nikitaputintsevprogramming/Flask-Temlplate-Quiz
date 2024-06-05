@@ -16,7 +16,7 @@ const Keyboard = {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "caps",
             "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-            "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "space", "lang","@"
+            "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "space", "lang"
         ],
         keyLayoutRu: [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
@@ -30,7 +30,7 @@ const Keyboard = {
             ";", ":", "'", "\"", "\\", "|", ",", ".", "/", "<", ">", "enter",
             "done", "?", "/", "space", "lang"
         ],
-        insertLineBreakAfterKeys: ["backspace", "p", "enter", "?", "}"]
+        insertLineBreakAfterKeys: ["backspace", "p", "enter", "?"]
     },
 
     init() {
@@ -94,7 +94,6 @@ const Keyboard = {
         const keyLayout = this._getCurrentKeyLayout();
 
         keyLayout.forEach((key) => {
-            const insertLineBreak = this.properties.insertLineBreakAfterKeys.indexOf(key) !== -1;
             let keyElement;
 
             switch (key) {
@@ -169,10 +168,6 @@ const Keyboard = {
             }
 
             fragment.appendChild(keyElement);
-
-            if (insertLineBreak) {
-                fragment.appendChild(document.createElement("br"));
-            }
         });
 
         return fragment;
@@ -203,7 +198,7 @@ const Keyboard = {
             this.properties.activeElement.value = this.properties.value;
         }
     },
-    
+
     _toggleLanguage() {
         const currentValue = this.properties.value;
         const activeElement = this.properties.activeElement;
@@ -230,9 +225,6 @@ const Keyboard = {
 
         this.properties.value = currentValue;
         this.properties.activeElement = activeElement;
-        if (this.properties.activeElement) {
-            this.properties.activeElement.value = this.properties.value;
-        }
 
         // Restore keyboard state
         if (isOpen) {
@@ -243,26 +235,31 @@ const Keyboard = {
     open(initialValue, oninput) {
         this.properties.value = initialValue || "";
         this.elements.main.classList.remove("keyboard--hidden");
-
-        // Hide send_button
+    
+        // Скрыть кнопку send_button
         const sendButton = document.querySelector(".send_button");
         if (sendButton) {
             sendButton.style.display = "none";
+        }
+        const switchField = document.querySelector(".switch-field");
+        if (switchField) {
+            switchField.style.display = "none";
         }
     },
 
     close() {
         this.elements.main.classList.add("keyboard--hidden");
-
-        // Show send_button
+    
+        // Показать кнопку send_button
         const sendButton = document.querySelector(".send_button");
         if (sendButton) {
             sendButton.style.display = "block";
         }
-
-        // Reset active element
-        this.properties.activeElement = null;
-    }
+        const switchField = document.querySelector(".switch-field");
+        if (switchField) {
+            switchField.style.display = "block";
+        }
+    },
 };
 
 window.addEventListener("DOMContentLoaded", function () {
