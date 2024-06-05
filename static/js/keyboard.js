@@ -22,7 +22,13 @@ const Keyboard = {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "done",
             "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "backspace",
             "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-             "caps","я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "space", "lang"
+             "caps","я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "ё", "-", ".", "space", "lang"
+        ],
+        keyLayoutSymb: [
+            "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "done",
+            "-", "_", "+", "=", "{", "}", "[", "]", "|", "\\", "backspace",
+            "'", "\"", ":", ";", "<", ">", ",", ".", "?", "!", "enter",
+            "caps", "№", "~", "€", "£", "¥", "₽", "/", "₴", "₣", "₤", "₡", "space", "lang"
         ],
         currentLayout: 'en'
     },
@@ -235,36 +241,6 @@ const Keyboard = {
         this.properties.activeElement = null;
     },
 };
-
-    // open(initialValue, oninput) {
-    //     this.properties.value = initialValue || "";
-    //     this.elements.main.classList.remove("keyboard--hidden");
-    
-    //     // Скрыть кнопку send_button
-    //     const sendButton = document.querySelector(".send_button");
-    //     if (sendButton) {
-    //         sendButton.style.display = "none";
-    //     }
-    //     const switchField = document.querySelector(".switch-field");
-    //     if (switchField) {
-    //         switchField.style.display = "none";
-    //     }
-    // },
-
-    // close() {
-    //     this.elements.main.classList.add("keyboard--hidden");
-    
-    //     // Показать кнопку send_button
-    //     const sendButton = document.querySelector(".send_button");
-    //     if (sendButton) {
-    //         sendButton.style.display = "block";
-    //     }
-    //     const switchField = document.querySelector(".switch-field");
-    //     if (switchField) {
-    //         switchField.style.display = "flex";
-    //     }
-    // },
-// };
 
 window.addEventListener("DOMContentLoaded", function () {
     Keyboard.init();
