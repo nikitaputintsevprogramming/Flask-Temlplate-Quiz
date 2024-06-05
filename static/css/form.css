@@ -1,3 +1,14 @@
+/* проверка полей */
+
+.text-field__input:invalid {
+    border-color: red;
+}
+
+.switch input:invalid + .checkmark {
+    background-color: red;
+}
+
+
 /* Общие стили */
 body {
     font-family: Arial, sans-serif;
