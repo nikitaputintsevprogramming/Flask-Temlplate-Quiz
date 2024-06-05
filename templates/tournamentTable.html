@@ -8,33 +8,24 @@
 
     <!-- Подключение Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../static/css/table.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="mt-4">Турнирная таблица</h1>
-        <table class="table table-striped table-bordered mt-3">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Время прочтения</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Email</th>
-                    <th>Телефон</th>
-                    <th>Очки</th>
-                </tr>
-            </thead>
+    <div class="container-fluid">
+        <div class="logo">
+            <img src="../static/css/Sprites/startPage/logo.png" alt="Авто.ру Лого">
+        </div>
+        <h1 class="">Топ 10</h1>
+        <table class="table table-striped table-hover mx-auto">
             <tbody>
-                {% for user in user_data %}
+                {% for user in user_data[:10] %}
                     <tr>
-                        <td>{{ user._id }}</td>
-                        <td>{{ user.timeOfRead }}</td>
-                        <td>{{ user.Name }}</td>
-                        <td>{{ user.Surname }}</td>
-                        <td>{{ user['E-mail'] }}</td>
-                        <td>{{ user.Phone }}</td>
-                        <td>{{ user.Marks }}</td>
+                        <td>{{ loop.index }}</td>
+                        <!-- <td>{{ user.timeOfRead }}</td> -->
+                        <td>{{ user.Name }} {{ user.Surname }}</td>
+                        <!-- <td>{{ user['E-mail'] }}</td> -->
+                        <!-- <td>{{ user.Phone }}</td> -->
+                        <td>{{ user.Marks }} ИЗ 10</td>
                     </tr>
                 {% endfor %}
             </tbody>

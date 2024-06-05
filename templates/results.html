@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Результаты</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <title>Авто.ру | Результаты</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/results.css">
     <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
-    <!-- <script src="../static/js/modules.js" type="application/javascript"></script> -->
-    <script src="../static/js/script.js" ></script>
-    <script src="../static/js/start.js"></script>
-
+    <script src="../static/js/script.js"></script>
 </head>
 <body>
     <div class="container">
-      <h1>Результаты опроса</h1>
-      
-      <div class="question-field">
-        <h2 id="question">Уважаемый,  ! Вы набрали {{context.marks}} из 10.</h2>
-        
-      <div class="send_button">
-        <button class="custom-btn btn-3" onclick='ToPage("/")'><span>Завершить</span></button>
-      </div>
+        <!-- <div class="logo">
+            <img src="../static/css/Sprites/startPage/logo.png" alt="Авто.ру Лого">
+        </div> -->
+        <p class="h1">ТЕСТ ЗАВЕРШЕН</p>
+        <p id="thanks">Благодарим <br/>за участие!</p>
+        <p id="result">Ваш результат: </p>  
+        <p id="marks">{{context.marks}} из 10</p>
+        <div class="send_button">
+            <img src="../static/css/Sprites/form/завершить.png" alt="Начать" onclick='ToPage("/")'>
+        </div>
     </div>
 </body>
 </html>

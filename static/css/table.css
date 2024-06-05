@@ -1,0 +1,98 @@
+/* Контейнер */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; Для центрирования по вертикали */
+}
+
+
+/* Лого */
+.logo {
+    width: 350px;
+    height: 54px;
+    top: 100px;
+    margin: 0 auto;
+    /* opacity: 0; */
+    animation: fadeIn 2s forwards;
+}
+
+
+.logo img {
+    width: 100%;
+    height: auto;
+    margin-top: 10%;
+}
+
+/* Фон страницы */
+body {
+    background-image: url('Sprites/form/фонФорма.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Турнирная таблица */
+.table {
+    color: white; /* Белый текст */
+    font-family: 'YSTextCondBold', sans-serif;
+    width: 80%;
+    margin-top: 20px; /* Измените значение по вашему усмотрению */
+    padding-top: 20px; /* Измените значение по вашему усмотрению */
+}
+
+/* Задний фон для каждой второй строки таблицы */
+.table tbody tr:nth-child(even) {
+    background-color: rgba(169, 169, 169, 0.5); /* Серый с прозрачностью */
+}
+
+
+
+/* Заголовок Топ 10 */
+h1 {
+    height: 120.11px;
+    margin-top: 5%;
+    /* margin-bottom: 10%; */
+    font-family: 'YSTextCondBold', sans-serif;
+    font-size: 140.13px;
+    font-weight: 800;
+    line-height: 140.13px;
+    text-align: center;
+    color: white; 
+}
+
+  /* Шрифты */
+@font-face {
+    font-family: "YSGeoRegular"; 
+    src: url("../fonts/YS\ Geo-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+@font-face {
+    font-family: "YSTextCondReg"; 
+    src: url("../fonts/YS\ Text\ Cond-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+@font-face {
+    font-family: "YSTextCondBold"; 
+    src: url("../fonts/YS\ Text\ Cond-Bold.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+@font-face {
+    font-family: "ysGeoBold"; 
+    src: url("../fonts/YS\ Display-Bold.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+@font-face {
+    font-family: "YSDisplay"; 
+    src: url("../fonts/YS\ Display-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+}
