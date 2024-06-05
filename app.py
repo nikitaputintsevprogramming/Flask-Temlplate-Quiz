@@ -8,6 +8,8 @@ from flask import Flask, render_template, request, json, redirect, url_for, requ
 from docxtpl import DocxTemplate
 import win32api
 import win32print
+from docx2pdf import convert
+import os
 
 import things
 from logger import Logger as lg
@@ -87,9 +89,11 @@ def generate_tournamentTable():
     
     return render_template('tournamentTable.html', user_data=sorted_user_data)
 
+# PDF
 @app.route('/print')
 def print_blank():
     try:
+        # Создание документа Word
         doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
         context = { 
             'name' : newUser[0].name,
@@ -97,15 +101,37 @@ def print_blank():
             'mark' : newUser[0].marks,
             'job' : jobForPrint(newUser[0].marks)}
         doc.render(context)
-        fpath = "App\Blanks\Автору.docx"
-        doc.save(fpath)
-        win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
+        word_fpath = "App\Blanks\Автору.docx"
+        doc.save(word_fpath)
+
+        # Конвертация Word в PDF
+        pdf_fpath = "App\Blanks\Автору.pdf"
+        convert(word_fpath, pdf_fpath)
+
+        # Печать PDF
+        win32api.ShellExecute(0, "print", pdf_fpath, None, ".", 0)
+        
     except Exception as e:
-        # Здесь можно добавить логирование ошибки или вывод сообщения
+        # Логирование ошибки
         print(f"Произошла ошибка: {e}")
     finally:
-        # Этот блок выполнится в любом случае, можно оставить его пустым
         pass
+        # Удаление временных файлов, если нужно
+        # if os.path.exists(word_fpath):
+        #     os.remove(word_fpath)
+        # if os.path.exists(pdf_fpath):
+        #     os.remove(pdf_fpath)
+# def print_blank():
+#     doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
+#     context = { 
+#         'name' : newUser[0].name,
+#         'surname' : newUser[0].surname,
+#         'mark' : newUser[0].marks,
+#         'job' : jobForPrint(newUser[0].marks)}
+#     doc.render(context)
+#     fpath = "App\Blanks\Автору.docx"
+#     doc.save(fpath)
+#     win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
 
 def jobForPrint(marks):
     if(marks >=0 and marks <= 1):

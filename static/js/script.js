@@ -41,12 +41,13 @@ function GetFormData(addr) {
 function GetQuestion(addr) {
     fetch('/static/js/questions.json')
     
+    
     .then(response => response.json())
     .then(data => {
         const questions = data.questions;
         const randomIndex = Math.floor(Math.random() * questions.length);
         const randomQuestion = questions[randomIndex];
-
+        console.log("getQues1");
         answers = randomQuestion.options;
         for (let index = 0; index < answers.length; index++) {
             const element = answers[index];
@@ -69,9 +70,10 @@ function GetQuestion(addr) {
             },      
             success: function (response)
             {
-                console.log(response)
+                console.log(response);
+                console.log("getQues2");
                 const baseUrl = window.location.origin;
-                window.open(baseUrl + addr, '_self');
+                window.open(baseUrl + '/question', '_self');
             }  
         });
     })
@@ -83,7 +85,7 @@ function CheckAnswer(addr) {
     for (let index = 1; index <= 4; index++) {
         let checkAnswer = document.getElementById('InputOption'+index);
         if(checkAnswer.checked){
-            selectedAnswer = checkAnswer.value;ц
+            selectedAnswer = checkAnswer.value;
             continue;
         }
     }
@@ -98,6 +100,8 @@ function CheckAnswer(addr) {
         success: function (response)
         {
             console.log(response)
+            console.log("ChkAnsw");
+            GetQuestion("/getQuestionData");
             // if(document.getElementById('h1').innerHTML == 'Вопрос №1'){
             //     console.log('reload');
             //     location.href = 'http://192.168.31.24:5000/tournamentTable';
@@ -106,5 +110,5 @@ function CheckAnswer(addr) {
             // }
         }
     });
-    GetQuestion("/getQuestionData")
+    
 }
