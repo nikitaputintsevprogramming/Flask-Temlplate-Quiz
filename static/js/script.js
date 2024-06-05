@@ -14,7 +14,8 @@ function ToPage(addr) {
             
         }
     });
-    window.open('http://192.168.31.24:5000'+addr, '_self')
+    const baseUrl = window.location.origin;
+    window.open(baseUrl + addr, '_self');
 }
 
 function GetFormData(addr) {
@@ -69,7 +70,8 @@ function GetQuestion(addr) {
             success: function (response)
             {
                 console.log(response)
-                window.open('http://192.168.31.24:5000/question', '_self')
+                const baseUrl = window.location.origin;
+                window.open(baseUrl + addr, '_self');
             }  
         });
     })
@@ -81,7 +83,7 @@ function CheckAnswer(addr) {
     for (let index = 1; index <= 4; index++) {
         let checkAnswer = document.getElementById('InputOption'+index);
         if(checkAnswer.checked){
-            selectedAnswer = checkAnswer.value;
+            selectedAnswer = checkAnswer.value;ц
             continue;
         }
     }

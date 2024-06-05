@@ -89,16 +89,23 @@ def generate_tournamentTable():
 
 @app.route('/print')
 def print_blank():
-    doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
-    context = { 
-        'name' : newUser[0].name,
-        'surname' : newUser[0].surname,
-        'mark' : newUser[0].marks,
-        'job' : jobForPrint(newUser[0].marks)}
-    doc.render(context)
-    fpath = "App\Blanks\Автору.docx"
-    doc.save(fpath)
-    win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
+    try:
+        doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
+        context = { 
+            'name' : newUser[0].name,
+            'surname' : newUser[0].surname,
+            'mark' : newUser[0].marks,
+            'job' : jobForPrint(newUser[0].marks)}
+        doc.render(context)
+        fpath = "App\Blanks\Автору.docx"
+        doc.save(fpath)
+        win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
+    except Exception as e:
+        # Здесь можно добавить логирование ошибки или вывод сообщения
+        print(f"Произошла ошибка: {e}")
+    finally:
+        # Этот блок выполнится в любом случае, можно оставить его пустым
+        pass
 
 def jobForPrint(marks):
     if(marks >=0 and marks <= 1):
