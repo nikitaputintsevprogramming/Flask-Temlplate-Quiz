@@ -2,10 +2,11 @@
 # напомнить, что очень важно, чтобы во время работы файл xl был закрыт! иначе ничего не будет сохраняться
 # Перед печатью нужно отключить уведомления в принтере или нужна настройка принтера на поля?
 
-import socket, random 
+import socket, random, pythoncom
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
 # from flask_socketio import SocketIO, emit
 from docxtpl import DocxTemplate
+from fpdf import FPDF
 import win32api
 import win32print
 from docx2pdf import convert
@@ -16,6 +17,7 @@ from logger import Logger as lg
 
 app = Flask(__name__)
 # socketio = SocketIO(app)
+pythoncom.CoInitialize()
 
 logger_instance = lg('QuizInformation')
 quizData = things.Question("question","answer1","answer2","answer3","answer4")
@@ -92,46 +94,69 @@ def generate_tournamentTable():
 # PDF
 @app.route('/print')
 def print_blank():
+    # # Создаем PDF-файл на основе данных
+    # pdf = FPDF()
+    # pdf.add_page()
+    # pdf.set_font("Arial", size=12)
+    
+    # context = { 
+    #     'name' : newUser[0].name,
+    #     'surname' : newUser[0].surname,
+    #     'mark' : newUser[0].marks,
+    #     'job' : jobForPrint(newUser[0].marks)
+    # }
+
+    # pdf.cell(200, 10, txt=f"Name: {context['name']}", ln=True)
+    # pdf.cell(200, 10, txt=f"Surname: {context['surname']}", ln=True)
+    # pdf.cell(200, 10, txt=f"Mark: {context['mark']}", ln=True)
+    # pdf.cell(200, 10, txt=f"Job: {context['job']}", ln=True)
+
+    # pdf_fpath = "App\Blanks\Автору.pdf"
+    # pdf.output(pdf_fpath)
+
+    # # Печатаем созданный PDF-файл
+    # win32api.ShellExecute(0, "print", pdf_fpath, None, ".", 0)
     try:
+        # Инициализация библиотеки COM
+        pythoncom.CoInitialize()
+
         # Создание документа Word
-        doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
+        doc = DocxTemplate("App\\Blanks\\Бланк - Авто.ру.docx")
         context = { 
-            'name' : newUser[0].name,
-            'surname' : newUser[0].surname,
-            'mark' : newUser[0].marks,
-            'job' : jobForPrint(newUser[0].marks)}
+            'name': newUser[0].name,
+            'surname': newUser[0].surname,
+            'mark': newUser[0].marks,
+            'job': jobForPrint(newUser[0].marks)
+        }
         doc.render(context)
-        word_fpath = "App\Blanks\Автору.docx"
+        word_fpath = "App\\Blanks\\Автору.docx"
         doc.save(word_fpath)
 
         # Конвертация Word в PDF
-        pdf_fpath = "App\Blanks\Автору.pdf"
+        pdf_fpath = "App\\Blanks\\Автору.pdf"
         convert(word_fpath, pdf_fpath)
 
+        # Проверка существования PDF-файла
+        if not os.path.exists(pdf_fpath):
+            raise FileNotFoundError(f"Файл PDF не найден: {pdf_fpath}")
+
         # Печать PDF
-        win32api.ShellExecute(0, "print", pdf_fpath, None, ".", 0)
-        
+        result = win32api.ShellExecute(0, "print", pdf_fpath, None, ".", 0)
+        if result <= 32:
+            raise RuntimeError(f"Ошибка при печати PDF-файла: {result}")
+
     except Exception as e:
         # Логирование ошибки
         print(f"Произошла ошибка: {e}")
     finally:
-        pass
-        # Удаление временных файлов, если нужно
-        # if os.path.exists(word_fpath):
-        #     os.remove(word_fpath)
-        # if os.path.exists(pdf_fpath):
-        #     os.remove(pdf_fpath)
-# def print_blank():
-#     doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
-#     context = { 
-#         'name' : newUser[0].name,
-#         'surname' : newUser[0].surname,
-#         'mark' : newUser[0].marks,
-#         'job' : jobForPrint(newUser[0].marks)}
-#     doc.render(context)
-#     fpath = "App\Blanks\Автору.docx"
-#     doc.save(fpath)
-#     win32api.ShellExecute(0, "printto", fpath, '"%s"' % win32print.GetDefaultPrinter(), ".", 0)
+        # Деинициализация библиотеки COM
+        pythoncom.CoUninitialize()
+#  Удаление временных файлов, если нужно
+#     if os.path.exists(word_fpath):
+#         os.remove(word_fpath)
+#     if os.path.exists(pdf_fpath):
+#         os.remove(pdf_fpath)
+        
 
 def jobForPrint(marks):
     if(marks >=0 and marks <= 1):
