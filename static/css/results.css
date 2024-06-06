@@ -32,7 +32,7 @@ body {
 
 .h1 {
     font-size: 36px;
-    margin-top: 50px;
+    margin-top: -150px;
     animation: fadeIn 2s 1s forwards;
     opacity: 0;
     font-family: 'YSTextCondBold';
@@ -44,7 +44,7 @@ body {
 
 #thanks {
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: -50px;
     animation: fadeIn 2s 2s forwards;
     opacity: 0;
     font-family: 'YSDisplay';
@@ -68,7 +68,7 @@ body {
 
 #marks{
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: -50px;
     animation: fadeIn 2s 3s forwards;
     opacity: 0;
     font-family: 'YSTextCondBold';
@@ -83,6 +83,7 @@ body {
     margin: 40px auto;
     animation: fadeIn 2s 4s forwards;
     opacity: 0;
+    margin-top: -50px;
 }
 
 .send_button img {
