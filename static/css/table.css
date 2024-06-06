@@ -26,7 +26,7 @@
 
 /* Фон страницы */
 body {
-    background-image: url('Sprites/form/фонРузультат.png');
+    background-image: url('Sprites/form/фонTable.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -34,7 +34,7 @@ body {
 
 /* Турнирная таблица */
 .table {
-    color: white; /* Белый текст */
+    color: black; /* Белый текст */
     font-family: 'YSTextCondBold', sans-serif;
     width: 80%;
     margin-top: 20px; /* Измените значение по вашему усмотрению */
@@ -58,7 +58,7 @@ h1 {
     font-weight: 800;
     line-height: 140.13px;
     text-align: center;
-    color: white; 
+    color: black; 
 }
 
   /* Шрифты */

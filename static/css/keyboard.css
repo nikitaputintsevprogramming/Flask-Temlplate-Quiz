@@ -29,9 +29,9 @@
     width: 70px; /* Квадратные кнопки */
     margin: 3px;
     border-radius: 4px;
-    border: 2px solid black; /* Белые кнопки */
-    background: black; /* Прозрачный фон */
-    color: rgb(255, 255, 255); /* Черные буквы */
+    border: 2px solid rgb(255, 255, 255); /* Белые кнопки */
+    background: white; /* Прозрачный фон */
+    color: rgb(0, 0, 0); /* Черные буквы */
     font-size: 1.05rem;
     outline: none;
     cursor: pointer;
@@ -87,5 +87,5 @@
 }
 
 .material-icons {
-    color: rgb(255, 255, 255); /* Черный цвет для иконок */
+    color: rgb(0, 0, 0); /* Черный цвет для иконок */
 }

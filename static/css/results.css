@@ -39,7 +39,7 @@ body {
     font-weight: 800;
     font-size: 70px;
     line-height: 70px;
-    color: white;
+    color: black;
 }
 
 #thanks {
@@ -51,7 +51,7 @@ body {
     font-weight: 500;
     font-size: 60px;
     line-height: 60px;
-    color: white;
+    color: black;
 }
 
 #result {
@@ -63,7 +63,7 @@ body {
     font-weight: 800;
     font-size: 70px;
     line-height: 70px;
-    color: white;
+    color: black;
 }
 
 #marks{
@@ -75,7 +75,7 @@ body {
     font-weight: 800;
     font-size: 120px;
     line-height: 120px;
-    color: white;
+    color: black;
 }
 
 .send_button {
