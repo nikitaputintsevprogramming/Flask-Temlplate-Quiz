@@ -11,10 +11,10 @@
 .logo {
     width: 350px;
     height: 54px;
-    top: 100px;
+    top: 20%;
     margin: 0 auto;
-    /* opacity: 0; */
-    animation: fadeIn 2s forwards;
+    opacity: 0;
+    /* animation: fadeIn 2s forwards; */
 }
 
 
@@ -26,7 +26,7 @@
 
 /* Фон страницы */
 body {
-    background-image: url('Sprites/form/фонФорма.png');
+    background-image: url('Sprites/form/фонРузультат.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -51,7 +51,7 @@ body {
 /* Заголовок Топ 10 */
 h1 {
     height: 120.11px;
-    margin-top: 5%;
+    margin-top: 10%;
     /* margin-bottom: 10%; */
     font-family: 'YSTextCondBold', sans-serif;
     font-size: 140.13px;
