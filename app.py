@@ -17,7 +17,7 @@ from logger import Logger as lg
 
 app = Flask(__name__)
 # socketio = SocketIO(app)
-pythoncom.CoInitialize()
+# pythoncom.CoInitialize()
 
 logger_instance = lg('QuizInformation')
 quizData = things.Question("question","answer1","answer2","answer3","answer4")
