@@ -94,18 +94,18 @@ def generate_tournamentTable():
 def print_blank():
     try:
         # Создание документа Word
-        doc = DocxTemplate("App\Blanks\Бланк - Авто.ру.docx")
+        doc = DocxTemplate(r"App\Blanks\Бланк - Авто.ру.docx")
         context = { 
             'name' : newUser[0].name,
             'surname' : newUser[0].surname,
             'mark' : newUser[0].marks,
             'job' : jobForPrint(newUser[0].marks)}
         doc.render(context)
-        word_fpath = "App\Blanks\Автору.docx"
+        word_fpath = r"App\Blanks\Автору.docx"
         doc.save(word_fpath)
 
         # Конвертация Word в PDF
-        pdf_fpath = "App\Blanks\Автору.pdf"
+        pdf_fpath = r"App\Blanks\Автору.pdf"
         convert(word_fpath, pdf_fpath)
 
         # Печать PDF
