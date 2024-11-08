@@ -6,7 +6,7 @@ import socket, random, pythoncom
 from flask import Flask, render_template, request, json, redirect, url_for, request, jsonify
 # from flask_socketio import SocketIO, emit
 from docxtpl import DocxTemplate
-from fpdf import FPDF
+# from fpdf import FPDF
 import win32api
 import win32print
 from docx2pdf import convert
